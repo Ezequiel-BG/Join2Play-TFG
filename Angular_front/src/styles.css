@@ -1,1 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+p, span, li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    font-weight: 100;
+    color: rgba(239, 239, 239, 1);
+}
+
+h2, h3, h4 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 40px;
+    font-weight: 100;
+    color: rgba(239, 239, 239, 1);
+}
+
+h1 {
+    font-family: 'Audiowide', cursive;
+    font-size: 40px;
+    display: inline-block;
+    color: rgba(239, 239, 239, 1);
+}
+
+body {
+    background-color: rgba(33, 33, 33, 1);
+    height: 100%;
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 200px;
+    text-decoration: none;
+    color: rgba(239, 239, 239, 1);
+    background-color: rgba(122, 175, 140, 1);
+    transition: 0.5s;
+}
+
+.btn:hover {
+    background-color: rgb(92, 129, 105);
+}
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 35px;
+    }
+
+    h2, h3, h4 {
+        font-size: 30px;
+    }
+
+    p, span, li{
+        font-size: 20px;
+    }
+
+    .btn {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    h2, h3, h4 {
+        font-size: 25px;
+    }
+
+    p, span, li{
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 16px;
+    } 
+}

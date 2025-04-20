@@ -1,0 +1,17 @@
+<div class="container">
+    <a href=""><h1>Join<h1 class="title2">2</h1>Play</h1></a>
+    <div class="hamburger" (click)="toggleMenu()">
+        ☰
+    </div>
+    <aside class="sidebar" [class.open]="menuOpen">
+        <button class="close-btn" (click)="menuOpen = false">✕</button>
+        <a href="">TeamFinder</a>
+        <a href="">Registros</a>
+        <a href="">Iniciar Sesión</a>
+    </aside>
+    <nav class="nav-desktop">
+        <a href="">TeamFinder</a>
+        <a href="">Registros</a>
+        <a href="">Iniciar Sesión</a>
+    </nav>
+</div>

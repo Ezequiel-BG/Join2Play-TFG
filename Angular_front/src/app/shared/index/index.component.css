@@ -1,0 +1,85 @@
+.container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-color: rgba(65, 61, 61, 1);
+    position: fixed;
+}
+
+.title2 {
+    color: rgba(122, 175, 140, 1);
+}
+
+a {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 16px;
+    color: rgba(239, 239, 239, 1);
+    text-decoration: none;
+    padding: 30px;
+    transition: 0.5s;
+}
+
+a:hover {
+    color: rgba(122, 175, 140, 1);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(65, 61, 61, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 40px 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: rgba(239, 239, 239, 1);
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+.sidebar.open {
+    right: 0;
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    color: rgba(239, 239, 239, 1);
+}
+
+@media (max-width: 1024px) {
+    a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    a {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .nav-desktop {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
