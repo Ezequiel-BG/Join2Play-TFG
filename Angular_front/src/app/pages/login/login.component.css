@@ -1,0 +1,64 @@
+.login {
+    background-image: url(../../../../public/assets/team-img.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: rgba(65, 61, 61, 1);
+    height: 600px;
+    width: 600px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.form-container h2 {
+    margin-bottom: 60px;
+    font-family: 'Audiowide';
+}
+
+.form-container a {
+    color: rgba(239, 239, 239, 1);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+    margin-top: 40px;
+    transition: 0.5s;
+}
+
+.form-container a:hover {
+    color: rgba(122, 175, 140, 1);
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+    color: rgba(239, 239, 239, 1);
+    margin-bottom: 10px;
+}
+
+.input {
+    width: 350px;
+    height: 40px;
+    padding: 13px;
+    font-size: 18px;
+    border-radius: 200px;
+    margin-bottom: 40px;
+}
