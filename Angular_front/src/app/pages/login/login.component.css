@@ -3,7 +3,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 1000px;
+    height: 110vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@
 
 .form-container {
     background-color: rgba(65, 61, 61, 1);
-    height: 600px;
+    height: 480px;
     width: 600px;
     border-radius: 30px;
     display: flex;
@@ -30,7 +30,7 @@
 .form-container a {
     color: rgba(239, 239, 239, 1);
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 100;
     margin-top: 40px;
     transition: 0.5s;
@@ -46,19 +46,67 @@
     flex-wrap: wrap;
 }
 
-.label {
+.input {
+    background-color: rgba(239, 239, 239, 1);
+    width: 350px;
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    font-weight: 100;
-    color: rgba(239, 239, 239, 1);
-    margin-bottom: 10px;
+    font-size: 16px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 3px solid transparent;
 }
 
-.input {
-    width: 350px;
-    height: 40px;
-    padding: 13px;
-    font-size: 18px;
-    border-radius: 200px;
-    margin-bottom: 40px;
+.input-error {
+    border: 3px solid rgb(255, 89, 89);
+}
+
+.input::placeholder {
+    color: rgb(116, 116, 116);
+}
+
+.input:focus {
+    border: none;
+    border: 3px solid rgba(122, 175, 140, 1);
+    outline: none;
+}
+
+.btn {
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+    .form-container {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 767px) {
+    .form-container {
+        width: 300px;
+        height: 400px;
+    }
+
+    .form-container h2 {
+        font-size: 18px;
+    }
+
+    .form-container a {
+        font-size: 14px;
+    }
+
+    .input {
+        width: 250px;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
 }

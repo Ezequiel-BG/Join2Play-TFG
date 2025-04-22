@@ -1,5 +1,7 @@
 <div class="container">
-    <a routerLink="/"><h1>Join<h1 class="title2">2</h1>Play</h1></a>
+    <a routerLink="/">
+        <h1>Join<h1 class="title2">2</h1>Play</h1>
+    </a>
     <div class="hamburger" (click)="toggleMenu()">
         ☰
     </div>
@@ -7,11 +9,13 @@
         <button class="close-btn" (click)="menuOpen = false">✕</button>
         <a routerLink="">TeamFinder</a>
         <a routerLink="">Registros</a>
-        <a routerLink="/login">Iniciar Sesión</a>
+        <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
+        <a *ngIf="isLoggedIn" (click)="logout()" routerLink="">Cerrar Sesión</a>
     </aside>
     <nav class="nav-desktop">
         <a routerLink="">TeamFinder</a>
         <a routerLink="">Registros</a>
-        <a routerLink="/login">Iniciar Sesión</a>
+        <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
+        <a *ngIf="isLoggedIn" (click)="logout()" routerLink="">Cerrar sesión</a>
     </nav>
 </div>
