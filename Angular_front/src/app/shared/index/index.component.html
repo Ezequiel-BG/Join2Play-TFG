@@ -7,14 +7,14 @@
     </div>
     <aside class="sidebar" [class.open]="menuOpen">
         <button class="close-btn" (click)="menuOpen = false">✕</button>
-        <a routerLink="">TeamFinder</a>
-        <a routerLink="">Registros</a>
+        <a routerLink="team-finder">TeamFinder</a>
+        <a routerLink="game-register">Registros</a>
         <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
         <a *ngIf="isLoggedIn" (click)="logout()" routerLink="">Cerrar Sesión</a>
     </aside>
     <nav class="nav-desktop">
-        <a routerLink="">TeamFinder</a>
-        <a routerLink="">Registros</a>
+        <a routerLink="team-finder">TeamFinder</a>
+        <a routerLink="game-register">Registros</a>
         <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
         <a *ngIf="isLoggedIn" (click)="logout()" routerLink="">Cerrar sesión</a>
     </nav>

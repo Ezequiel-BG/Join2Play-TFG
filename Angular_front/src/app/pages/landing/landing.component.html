@@ -8,7 +8,24 @@
     <div class="register-ad-content">
         <h2>¡Regístrate en nuestros juegos!</h2>
         <p>Para encontrar a tus compañeros de equipo, primero debemos saber que tal juegas. ¡Regístrate y cuéntanos!</p>
-        <a href="" class="btn">Registrarme en videojuegos</a>
+        <a routerLink="game-register" class="btn">Registrarme en videojuegos</a>
     </div>
     <div class="register-ad-img"></div>
+</div>
+<div class="teamFinder-ad">
+    <div class="teamFinder-ad-img"></div>
+    <div class="teamFinder-ad-content">
+        <h2>¡Encuentra a los compañeros que necesites y foja un equipo!</h2>
+        <p>Jugar en solitario no se disfruta igual, todos lo sabemos, ¡Encuentra a jugadores con los que jugar!</p>
+        <a routerLink="team-finder" class="btn">Encontrar compañeros</a>
+    </div>
+</div>
+<div class="carousel">
+    <div class="carousel-slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide" [ngStyle]="{ 'background-image': 'url(' + slide.image + ')' }">
+        <div class="carousel-content">
+            <h2>{{ slide.title }}</h2>
+            <p>{{ slide.text }}</p>
+            <a class="btn" [routerLink]="slide.buttonLink">{{ slide.buttonText }}</a>
+        </div>
+    </div>
 </div>
