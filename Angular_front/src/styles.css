@@ -33,6 +33,37 @@ body {
     height: 100%;
 }
 
+.header-welcome {
+    height: 700px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 60px;
+    transition: 0.5s;
+}
+
+.header-welcome div {
+    width: 80%;
+}
+
+.header-welcome div h2 {
+    font-family: "Audiowide";
+    font-weight: 100;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.header-welcome div p {
+    font-family: "Exo 2";
+    font-weight: 100;
+    font-size: 25px;
+}
+
 .btn {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -99,6 +130,18 @@ body {
         font-size: 20px;
     }
 
+    .header-welcome {
+        height: 600px;
+    }
+
+    .header-welcome div h2 {
+        font-size: 35px;
+    }
+
+    .header-welcome div p {
+        font-size: 20px;
+    }
+
     .btn {
         font-size: 18px;
     }
@@ -118,6 +161,18 @@ body {
     }
 
     p {
+        font-size: 16px;
+    }
+
+    .header-welcome {
+        height: 500px;
+    }
+
+    .header-welcome div h2 {
+        font-size: 30px;
+    }
+
+    .header-welcome div p {
         font-size: 16px;
     }
 

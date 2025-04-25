@@ -10,7 +10,7 @@ import { UserRegister } from '../models/user-register.model';
 })
 export class AuthService {
   private readonly API_URL = environment.apiURL
-
+  
   constructor(private http: HttpClient) { }
 
   login(credentials: AuthCredentials): Observable<any> {

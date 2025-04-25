@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('videojuegos', function (Blueprint $table) {
             $table->id('id_videojuego');
             $table->string('nombre');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

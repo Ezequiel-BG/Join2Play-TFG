@@ -1,1 +1,28 @@
-<p>game-register works!</p>
+<div class="header-welcome">
+    <div>
+        <h2>¡Únete al resto de jugadores!</h2>
+    </div>
+</div>
+<div class="form-container">
+    <form>
+        <div>
+            <img src="assets/searcher-icon.png" alt="Lupa" class="searcher-icon">
+            <input type="text" name="searcher" id="searcher" placeholder="Buscar..." class="searcher">
+        </div>
+        <button type="submit" class="btn">Buscar</button>
+    </form>
+</div>
+<div class="loading-container" *ngIf="loading">
+    <h2>Cargando videojuegos...</h2>
+</div>
+<div class="game-errors-container" *ngIf="errors">
+    <h2>{{ errors }}</h2>
+</div>
+<div class="game-cards-container" *ngIf="!loading && !errors">
+    <div class="game-card" *ngFor="let game of games; let i = index" [ngStyle]="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(' + game.imagen + ')' }">
+        <div>
+            <h2>{{ game.nombre }}</h2>
+            <a routerLink="" class="btn">Registrarse</a>
+        </div>
+    </div>
+</div>

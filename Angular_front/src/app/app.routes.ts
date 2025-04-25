@@ -10,6 +10,6 @@ export const routes: Routes = [
     {path:'', component: LandingComponent},
     {path:'login', component: LoginComponent, canActivate: [isGuestGuard]},
     {path:'register', component: RegisterComponent, canActivate: [isGuestGuard]},
-    {path:'game-register', component: GameRegisterComponent, canActivate: [isUserAuthenticatedGuard]},
-    {path:'team-finder', component: TeamFinderComponent, canActivate: [isUserAuthenticatedGuard]}
+    {path:'game-register', component: GameRegisterComponent},
+    {path:'team-finder', component: TeamFinderComponent}
 ];

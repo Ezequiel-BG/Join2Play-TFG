@@ -10,8 +10,8 @@
 }
 
 .form-container {
-    background-color: rgba(65, 61, 61, 1);
-    height: 500px;
+    background-color: rgb(51, 51, 51);
+    height: 450px;
     width: 700px;
     border-radius: 30px;
     display: flex;
