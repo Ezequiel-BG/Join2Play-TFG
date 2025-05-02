@@ -102,6 +102,10 @@ form div {
     border: 5px solid rgba(122, 175, 140, 1);
 }
 
+.btn {
+    cursor: pointer;
+}
+
 @media (max-width: 1024px) {
     .form-container {
         margin-top: 80px;

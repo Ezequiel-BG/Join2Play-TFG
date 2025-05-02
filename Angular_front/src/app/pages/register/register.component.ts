@@ -20,6 +20,7 @@ export class RegisterComponent {
     private router: Router,
     private fb: FormBuilder
   ) {
+    window.scrollTo(0,0)
     this.registerForm = this.fb.group({
       name: [''],
       email: [''],

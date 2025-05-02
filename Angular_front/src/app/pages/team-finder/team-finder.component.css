@@ -5,3 +5,36 @@
             rgba(33, 33, 33, 1) 100%),
         url(../../../../public/assets/teamFinder-welcome-img.png);
 }
+
+.loading-container,
+.game-errors-container {
+    width: 100%;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    text-align: center;
+}
+
+.loading-container h2,
+.game-errors-container h2 {
+    font-family: 'Audiowide';
+    color: rgb(51, 51, 51);
+}
+
+.unauthenticated-alert {
+    width: 70%;
+    margin: auto;
+    background-color: rgb(51, 51, 51);
+    border: 3px solid rgba(122, 175, 140, 1);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    text-align: center;
+
+}
+
+.unauthenticated-alert h2 {
+    font-family: "Audiowide"; 
+    width: 100%;
+    margin-bottom: 60px;
+}

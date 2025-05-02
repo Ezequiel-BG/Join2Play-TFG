@@ -22,7 +22,10 @@
     <div class="game-card" *ngFor="let game of games; let i = index" [ngStyle]="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(' + game.imagen + ')' }">
         <div>
             <h2>{{ game.nombre }}</h2>
-            <a routerLink="" class="btn">Registrarse</a>
+            <a class="btn" (click)="openForm(game.nombre)">Registrarse</a>
         </div>
     </div>
 </div>
+<app-lolform *ngIf="showLOLModal" (closeModal)="closeLOL()"></app-lolform>
+<app-valorantform *ngIf="showValorantModal" (closeModal)="closeValorant()"></app-valorantform>
+<app-fortniteform *ngIf="showFortniteModal" (closeModal)="closeFortnite()"></app-fortniteform>

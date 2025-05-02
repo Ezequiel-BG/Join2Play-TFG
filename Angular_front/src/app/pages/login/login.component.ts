@@ -23,6 +23,7 @@ export class LoginComponent {
     private router: Router,
     private fb: FormBuilder
   ) {
+    window.scrollTo(0,0)
     this.loginForm = this.fb.group({
       'email': [''],
       'password': ['']

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JuegaFortnite extends Model
 {
-    protected $fillable = ['rango', 'objetivo'];
+    protected $fillable = ['username', 'rango', 'idiomas', 'descripcion', 'contacto'];
 
     public function usuarioVideojuego() {
         return $this->belongsTo(UsuarioVideojuego::class);

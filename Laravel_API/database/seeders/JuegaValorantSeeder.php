@@ -12,8 +12,12 @@ class JuegaValorantSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('juega_valorant')->insert([
-            ['id_usuario_videojuego' => 2, 'rango' => 'Oro', 'objetivo' => 'Divertirse']
-        ]);
+        DB::table('juega_valorant')->insert([[
+            'id_usuario_videojuego' => 2,
+            'username' => 'GoergeOfTheJungle', 
+            'rango' => 'Oro', 
+            'descripcion' => 'Conocer a otros jugadores',
+            'contacto' => 'prueba'
+        ]]);
     }
 }

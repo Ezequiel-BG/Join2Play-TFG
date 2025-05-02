@@ -12,8 +12,13 @@ class JuegaLolSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('juega_lol')->insert([
-            ['id_usuario_videojuego' => 1, 'posicion' => 'Mid', 'rango' => 'Plata', 'objetivo' => 'Competitivo']
-        ]);
+        DB::table('juega_lol')->insert([[
+            'id_usuario_videojuego' => 1,
+            'username' => 'paquito69HardcorePlayer', 
+            'posicion' => 'Mid', 
+            'rango' => 'Plata', 
+            'descripcion' => 'Jugar partidas competitivas',
+            'contacto' => 'prueba'
+        ]]);
     }
 }

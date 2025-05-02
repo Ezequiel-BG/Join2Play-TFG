@@ -3,3 +3,24 @@
         <h2>¡Forma un equipo invencible!</h2>
     </div>
 </div>
+<div class="unauthenticated-alert" *ngIf="!isAuthenticated && !loading && !errors">
+    <h2>¡Inicia sesión y conoce al resto de jugadores!</h2>
+    <a routerLink="/login" class="btn">Inicia sesión</a>
+</div>
+<div class="loading-container" *ngIf="loading">
+    <h2>Cargando usuarios...</h2>
+</div>
+<div class="game-errors-container" *ngIf="errors">
+    <h2>{{ errors }}</h2>
+</div>
+<div class="users-container" *ngIf="isAuthenticated && !loading && !errors">
+    <div class="users">
+        <h2>Jugadores de League of Legends</h2>
+    </div>
+    <div class="users">
+        <h2>Jugadores de Valorant</h2>
+    </div>
+    <div class="users">
+        <h2>Jugadores de Fortnite</h2>
+    </div>
+</div>

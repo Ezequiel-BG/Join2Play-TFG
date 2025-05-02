@@ -36,6 +36,10 @@ export class LandingComponent {
   currentSlide = 0;
   intervalId: any;
 
+  constructor () {
+    window.scrollTo(0,0)
+  }
+
   ngOnInit() {
     this.intervalId = setInterval(() => {
       this.nextSlide();

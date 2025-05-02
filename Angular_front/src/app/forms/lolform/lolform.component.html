@@ -1,0 +1,41 @@
+<div class="overlay">
+  <div class="modal">
+    <button class="close-button" (click)="close()">✖</button>
+    <h2>League of Legends</h2>
+    <form (ngSubmit)="onSubmit()">
+      <input type="text" placeholder="Nombre de usuario" name="username" required class="input" />
+      <select name="rango" id="rango" required class="input">
+        <option value="Rango" disabled selected hidden class="placeholder-option">Rango</option>
+        <option value="hierro">hierro</option>
+        <option value="bronce">bronce</option>
+        <option value="plata">plata</option>
+        <option value="oro">oro</option>
+        <option value="platino">platino</option>
+        <option value="esmeralda">esmeralda</option>
+        <option value="diamante">diamante</option>
+        <option value="master">master</option>
+        <option value="grandmaster">grandmaster</option>
+        <option value="challenger">challenger</option>
+      </select>
+      <select name="posicion" id="posicion" required class="input">
+        <option value="posicion" disabled selected hidden class="placeholder-option">Posición</option>
+        <option value="top">top</option>
+        <option value="jngl">jngl</option>
+        <option value="mid">mid</option>
+        <option value="adc">adc</option>
+        <option value="supp">supp</option>
+      </select>
+      <select name="idiomas" id="idiomas" required class="input">
+        <option value="idioma" disabled selected hidden class="placeholder-option">Idioma</option>
+        <option value="español">español</option>
+        <option value="ingles">ingles</option>
+        <option value="aleman">aleman</option>
+        <option value="chino">chino</option>
+        <option value="japones">japones</option>
+      </select>
+      <input type="textarea" placeholder="Descripción" name="descripcion" class="input" />
+      <input type="text" placeholder="Contacto" name="contacto" class="input" />
+      <button type="submit" class="btn">Registrarme</button>
+    </form>
+  </div>
+</div>

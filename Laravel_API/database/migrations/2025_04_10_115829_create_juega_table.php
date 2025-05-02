@@ -13,25 +13,35 @@ return new class extends Migration
     {
         Schema::create('juega_lol', function (Blueprint $table) {
             $table->unsignedBigInteger('id_usuario_videojuego')->primary();
+            $table->string('username')->nullable();
             $table->string('posicion')->nullable();
             $table->string('rango')->nullable();
-            $table->string('objetivo')->nullable();
+            $table->string('idiomas')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('contacto')->nullable();
         
             $table->foreign('id_usuario_videojuego')->references('id_usuario_videojuego')->on('usuarios_videojuegos')->onDelete('cascade');
         });
 
         Schema::create('juega_valorant', function (Blueprint $table) {
             $table->unsignedBigInteger('id_usuario_videojuego')->primary();
+            $table->string('username')->nullable();
             $table->string('rango')->nullable();
-            $table->string('objetivo')->nullable();
+            $table->string('clase')->nullable();
+            $table->string('idiomas')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('contacto')->nullable();
         
             $table->foreign('id_usuario_videojuego')->references('id_usuario_videojuego')->on('usuarios_videojuegos')->onDelete('cascade');
         });
 
         Schema::create('juega_fortnite', function (Blueprint $table) {
             $table->unsignedBigInteger('id_usuario_videojuego')->primary();
+            $table->string('username')->nullable();
             $table->string('rango')->nullable();
-            $table->string('objetivo')->nullable();
+            $table->string('idiomas')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('contacto')->nullable();
         
             $table->foreign('id_usuario_videojuego')->references('id_usuario_videojuego')->on('usuarios_videojuegos')->onDelete('cascade');
         });

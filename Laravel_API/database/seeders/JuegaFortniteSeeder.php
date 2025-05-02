@@ -12,8 +12,12 @@ class JuegaFortniteSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('juega_fortnite')->insert([
-            ['id_usuario_videojuego' => 3, 'rango' => 'Diamante', 'objetivo' => 'Competitivo']
-        ]);
+        DB::table('juega_fortnite')->insert([[
+            'id_usuario_videojuego' => 3,
+            'username' => 'KeriosYT',
+            'rango' => 'Diamante', 
+            'descripcion' => 'Jugar por diversión',
+            'contacto' => 'prueba'    
+        ]]);
     }
 }
