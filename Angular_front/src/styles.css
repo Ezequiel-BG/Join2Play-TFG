@@ -34,7 +34,7 @@ body {
 }
 
 .header-welcome {
-    height: 700px;
+    height: 90vh;
     width: 100%;
     background-position: center;
     background-size: cover;

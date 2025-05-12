@@ -16,11 +16,61 @@
 <div class="users-container" *ngIf="isAuthenticated && !loading && !errors">
     <div class="users">
         <h2>Jugadores de League of Legends</h2>
+        <table class="users-table">
+            <tr class="table-headers">
+                <th>Username</th>
+                <th>Posición</th>
+                <th>Rango</th>
+                <th>Idiomas</th>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let user of lol_users; let i = index" class="table-tracks">
+                <td>{{ user.username }}</td>
+                <td>{{ user.posicion }}</td>
+                <td>{{ user.rango }}</td>
+                <td>{{ user.idiomas }}</td>
+                <td>{{ user.descripcion }}</td>
+                <td>Contacto</td>
+            </tr>
+        </table>
     </div>
     <div class="users">
         <h2>Jugadores de Valorant</h2>
+        <table class="users-table">
+            <tr class="table-headers">
+                <th>Username</th>
+                <th>Rango</th>
+                <th>Idiomas</th>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let user of valorant_users; let i = index" class="table-tracks">
+                <td>{{ user.username }}</td>
+                <td>{{ user.rango }}</td>
+                <td>{{ user.idiomas }}</td>
+                <td>{{ user.descripcion }}</td>
+                <td>Contacto</td>
+            </tr>
+        </table>
     </div>
     <div class="users">
         <h2>Jugadores de Fortnite</h2>
+        <table class="users-table">
+            <tr class="table-headers">
+                <th>Username</th>
+                <th>Rango</th>
+                <th>Idiomas</th>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let user of fortnite_users; let i = index" class="table-tracks">
+                <td>{{ user.username }}</td>
+                <td>{{ user.rango }}</td>
+                <td>{{ user.idiomas }}</td>
+                <td>{{ user.descripcion }}</td>
+                <td>Contacto</td>
+            </tr>
+        </table>
     </div>
 </div>

@@ -3,14 +3,26 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 110vh;
+    height: 105vh;
+}
+
+.register-overlay {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 105vh;
+    background-color: rgb(51, 51, 51, 0.3);
+    backdrop-filter: blur(6px);
+    z-index: 1;
 }
 
 .form-container {
     background-color: rgb(51, 51, 51);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     height: 450px;
     width: 700px;
     border-radius: 30px;

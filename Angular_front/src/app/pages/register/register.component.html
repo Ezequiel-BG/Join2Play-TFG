@@ -1,26 +1,28 @@
 <div class="register">
-    <div class="form-container">
-        <div *ngIf="showErrorBox && hasErrors()" class="error-toast">
-            <button class="close-btn" (click)="closeErrorBox()">✕</button>
-            <ul>
-              <li *ngIf="errors?.name">{{ errors.name }}</li>
-              <li *ngIf="errors?.email">{{ errors.email }}</li>
-              <li *ngIf="errors?.password">{{ errors.password }}</li>
-              <li *ngIf="errors?.password_confirmation">{{ errors.password_confirmation }}</li>
-            </ul>
+    <div class="register-overlay">
+        <div class="form-container">
+            <div *ngIf="showErrorBox && hasErrors()" class="error-toast">
+                <button class="close-btn" (click)="closeErrorBox()">✕</button>
+                <ul>
+                  <li *ngIf="errors?.name">{{ errors.name }}</li>
+                  <li *ngIf="errors?.email">{{ errors.email }}</li>
+                  <li *ngIf="errors?.password">{{ errors.password }}</li>
+                  <li *ngIf="errors?.password_confirmation">{{ errors.password_confirmation }}</li>
+                </ul>
+            </div>
+            <h2>¡Bienvenido, nuevo jugador!</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="OnSubmit()">
+                <div>
+                    <input type="text" name="name" id="name" placeholder="Nombre de usuario" class="input" [ngClass]="{'input-error': errors?.name}" formControlName="name" required>
+                    <input type="email" name="email" id="email" placeholder="Email" class="input" [ngClass]="{'input-error': errors?.email}" formControlName="email" required>
+                </div>
+                <div>
+                    <input type="password" name="password" id="password" placeholder="******" class="input" [ngClass]="{'input-error': errors?.password}" formControlName="password" required>
+                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmar contraseña" class="input" [ngClass]="{'input-error': errors?.password_confirmation}" formControlName="password_confirmation" required>
+                </div>
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+            <a routerLink="/login">¿Ya tienes una cuenta?</a>
         </div>
-        <h2>¡Bienvenido, nuevo jugador!</h2>
-        <form [formGroup]="registerForm" (ngSubmit)="OnSubmit()">
-            <div>
-                <input type="text" name="name" id="name" placeholder="Nombre de usuario" class="input" [ngClass]="{'input-error': errors?.name}" formControlName="name" required>
-                <input type="email" name="email" id="email" placeholder="Email" class="input" [ngClass]="{'input-error': errors?.email}" formControlName="email" required>
-            </div>
-            <div>
-                <input type="password" name="password" id="password" placeholder="******" class="input" [ngClass]="{'input-error': errors?.password}" formControlName="password" required>
-                <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmar contraseña" class="input" [ngClass]="{'input-error': errors?.password_confirmation}" formControlName="password_confirmation" required>
-            </div>
-            <button type="submit" class="btn">Registrarse</button>
-        </form>
-        <a routerLink="/login">¿Ya tienes una cuenta?</a>
     </div>
 </div>

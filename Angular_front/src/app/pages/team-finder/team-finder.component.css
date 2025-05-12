@@ -38,3 +38,45 @@
     width: 100%;
     margin-bottom: 60px;
 }
+
+.users-container {
+    width: 85%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.users {
+    padding: 90px;
+}
+
+.users h2 {
+    margin-bottom: 50px;
+    font-family: 'Audiowide';
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.table-headers th {
+    color: rgba(239, 239, 239, 1);
+    font-family: 'Exo 2', sans-serif;
+    padding: 10px;
+}
+
+.table-tracks td {
+    color: rgba(239, 239, 239, 1);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(65, 61, 61, 1);
+    padding: 20px;
+    border-radius: 7px;
+}
+
+.table-tracks td:last-child {
+    background-color: rgba(122, 175, 140, 1);
+    width: 50px;
+}

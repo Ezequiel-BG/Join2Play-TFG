@@ -48,9 +48,6 @@ class VideogameController extends Controller
         ], Response::HTTP_OK);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id):JsonResponse
     {
         Videojuego::where('id_videojuego', $id)->delete();

@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function videojuegos() {
         return $this->belongsToMany(Videojuego::class, 'usuarios_videojuegos', 'id_usuario', 'id_videojuego');
     }
+
+    public function usuariosVideojuegos() {
+        return $this->hasMany(UsuarioVideojuego::class, 'user_id');
+    }
 }
