@@ -4,6 +4,7 @@ import { Component, inject } from '@angular/core';
 import { TokenService } from '../../services/token.service';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-team-finder',
@@ -17,12 +18,35 @@ export class TeamFinderComponent {
   lol_users: any;
   valorant_users: any;
   fortnite_users: any;
+  is_lol_user: any;
+  is_valorant_user: any;
+  is_fortnite_user: any;
   loading: boolean = true;
 
-  constructor (
-    private userService: UserService
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
   ) {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
+    const userId = this.authService.getUserId();
+
+    this.userService.userSubscription(userId, 'league of legends').subscribe((response: any) => {
+      if (response.data) {
+        this.is_lol_user = true
+      }
+    })
+
+    this.userService.userSubscription(userId, 'valorant').subscribe((response: any) => {
+      if (response.data) {
+        this.is_valorant_user = true
+      }
+    })
+
+    this.userService.userSubscription(userId, 'fortnite').subscribe((response: any) => {
+      if (response.data) {
+        this.is_fortnite_user = true
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -44,34 +68,34 @@ export class TeamFinderComponent {
     });
   }
 
-  handleLolResponse (data: any) {
+  handleLolResponse(data: any) {
     this.lol_users = data.usuarios
     this.loading = false
   }
 
-  handleValorantResponse (data: any) {
+  handleValorantResponse(data: any) {
     this.valorant_users = data.usuarios
     this.loading = false
   }
 
-  handleFortniteResponse (data: any) {
+  handleFortniteResponse(data: any) {
     this.fortnite_users = data.usuarios
     this.loading = false
   }
 
-  handleLolErrors (error: any) {
+  handleLolErrors(error: any) {
     this.errors = 'Error al cargar los usuarios de lol'
     console.log(this.errors);
     this.loading = false
   }
 
-  handleValorantErrors (error: any) {
+  handleValorantErrors(error: any) {
     this.errors = 'Error al cargar los usuarios de valorant'
     console.log(this.errors);
     this.loading = false
   }
 
-  handleFortniteErrors (error: any) {
+  handleFortniteErrors(error: any) {
     this.errors = 'Error al cargar los usuarios de fortnite'
     console.log(this.errors);
     this.loading = false

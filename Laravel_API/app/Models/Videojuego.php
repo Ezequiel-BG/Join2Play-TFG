@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Videojuego extends Model
 {
+    protected $table = 'videojuegos';
+    protected $primaryKey = 'id_videojuego';
     protected $fillable = ['nombre', 'imagen'];
 
     public function usuarios() {

@@ -10,14 +10,14 @@ class UsuarioVideojuego extends Model
 
     protected $primaryKey = 'id_usuario_videojuego';
 
-    protected $fillable = ['id_usuario', 'id_videojuego', 'fecha_registro'];
+    protected $fillable = ['user_id', 'id_videojuego', 'fecha_registro'];
     
     public function usuario() {
         return $this->belongsTo(User::class, 'user_id');
     }
     
     public function videojuego() {
-        return $this->belongsTo(Videojuego::class);
+        return $this->belongsTo(Videojuego::class, 'id_videojuego');
     }
 
     public function juegaLol() {

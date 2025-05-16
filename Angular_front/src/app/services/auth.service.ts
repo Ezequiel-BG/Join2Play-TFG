@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthCredentials } from '../models/auth-credentials.model';
 import { UserRegister } from '../models/user-register.model';
 
@@ -14,7 +14,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(credentials: AuthCredentials): Observable<any> {
-    return this.http.post(`${this.API_URL}/login`, credentials)
+    return this.http.post(`${this.API_URL}/login`, credentials).pipe(
+      tap((response: any) => {
+        localStorage.setItem('user', JSON.stringify(response.user));
+      })
+    );
   }
 
   register(user: UserRegister): Observable<any> {
@@ -23,5 +27,11 @@ export class AuthService {
 
   logout(): Observable<any> {
     return this.http.delete(`${this.API_URL}/logout`)
+  }
+
+  getUserId(): number | null {
+    const user = localStorage.getItem('user');
+    if (!user) return null;
+    return JSON.parse(user).id;
   }
 }

@@ -22,7 +22,7 @@
     <div class="game-card" *ngFor="let game of games; let i = index" [ngStyle]="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(' + game.imagen + ')' }">
         <div>
             <h2>{{ game.nombre }}</h2>
-            <a class="btn" (click)="openForm(game.nombre)">Registrarse</a>
+            <a class="btn" (click)="openForm(game.nombre)">Acceder</a>
         </div>
     </div>
 </div>

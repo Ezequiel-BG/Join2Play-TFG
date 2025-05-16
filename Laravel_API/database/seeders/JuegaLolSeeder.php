@@ -17,6 +17,7 @@ class JuegaLolSeeder extends Seeder
             'username' => 'paquito69HardcorePlayer', 
             'posicion' => 'Mid', 
             'rango' => 'Plata', 
+            'idiomas' => 'Inglés',
             'descripcion' => 'Jugar partidas competitivas',
             'contacto' => 'prueba'
         ]]);

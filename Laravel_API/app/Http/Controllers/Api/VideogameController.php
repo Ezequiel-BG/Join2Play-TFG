@@ -25,6 +25,30 @@ class VideogameController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function getGameId(string $game_name): JsonResponse
+    {
+        try {
+            $juego = Videojuego::where('nombre', $game_name)->first();
+
+            if (!$juego) {
+                return response()->json([
+                    'message' => "El juego '$game_name' no fue encontrado."
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            return response()->json([
+                'game_id' => $juego->id_videojuego,
+                'nombre' => $juego->nombre
+            ], Response::HTTP_OK);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al procesar la solicitud.',
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function update(Request $request, string $id): JsonResponse
     {
         $request->validate([

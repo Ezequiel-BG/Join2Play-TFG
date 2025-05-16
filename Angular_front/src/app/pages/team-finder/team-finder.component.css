@@ -57,26 +57,32 @@
 
 .users-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 5px;
+    border-collapse: collapse;
 }
 
 .table-headers th {
-    color: rgba(239, 239, 239, 1);
+    color: rgba(122, 175, 140, 1);
     font-family: 'Exo 2', sans-serif;
+    font-size: 28px;
     padding: 10px;
 }
 
 .table-tracks td {
     color: rgba(239, 239, 239, 1);
-    text-align: center;
     font-family: 'Roboto', sans-serif;
-    background-color: rgba(65, 61, 61, 1);
+    background-color: #1e1e1e;
     padding: 20px;
-    border-radius: 7px;
+    text-align: center;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
 }
 
-.table-tracks td:last-child {
-    background-color: rgba(122, 175, 140, 1);
-    width: 50px;
+.badge {
+    background-color: #333;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
 }

@@ -16,6 +16,7 @@ class JuegaValorantSeeder extends Seeder
             'id_usuario_videojuego' => 2,
             'username' => 'GoergeOfTheJungle', 
             'rango' => 'Oro', 
+            'idiomas' => 'Español',
             'descripcion' => 'Conocer a otros jugadores',
             'contacto' => 'prueba'
         ]]);

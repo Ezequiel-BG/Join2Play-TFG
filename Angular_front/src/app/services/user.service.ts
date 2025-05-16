@@ -27,8 +27,32 @@ export class UserService {
     return this.http.get(`${this.API_URL}/fortnite_user`);
   }
 
-  updateUser($user: User, $user_id: number) {
-    return this.http.post(`${this.API_URL}/user/${$user_id}`, $user);
+  createLolUser(user_register_data: any) {
+    return this.http.post(`${this.API_URL}/lol_user/create`, user_register_data);
+  }
+
+  createValorantUser(user_register_data: any) {
+    return this.http.post(`${this.API_URL}/valorant_user/create`, user_register_data);
+  }
+
+  createFortniteUser(user_register_data: any) {
+    return this.http.post(`${this.API_URL}/fortnite_user/create`, user_register_data);
+  }
+
+  userSubscription($user_id: number | null, $game: string) {
+    return this.http.get(`${this.API_URL}/suscripcionesUsers/${$user_id}/${$game}`);
+  }
+
+  updateLolUser($data: any, $id_usuario_videojuego: any) {
+    return this.http.post(`${this.API_URL}/lol_user/update/${$id_usuario_videojuego}`, $data);
+  }
+
+  updateValorantUser($data: any, $id_usuario_videojuego: any) {
+    return this.http.post(`${this.API_URL}/valorant_user/update/${$id_usuario_videojuego}`, $data);
+  }
+
+  updateFortniteUser($data: any, $id_usuario_videojuego: any) {
+    return this.http.post(`${this.API_URL}/fortnite_user/update/${$id_usuario_videojuego}`, $data);
   }
 
   revokeUser($user_id: number) {

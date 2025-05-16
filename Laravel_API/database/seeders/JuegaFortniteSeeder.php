@@ -16,6 +16,7 @@ class JuegaFortniteSeeder extends Seeder
             'id_usuario_videojuego' => 3,
             'username' => 'KeriosYT',
             'rango' => 'Diamante', 
+            'idiomas' => 'Español',
             'descripcion' => 'Jugar por diversión',
             'contacto' => 'prueba'    
         ]]);

@@ -7,8 +7,12 @@ use App\Models\JuegaFortnite;
 use App\Models\JuegaLol;
 use App\Models\JuegaValorant;
 use App\Models\User;
+use App\Models\UsuarioVideojuego;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class UsersController extends Controller
 {
@@ -16,7 +20,7 @@ class UsersController extends Controller
     {
         $users = User::all();
 
-        if ($users -> isEmpty()) {
+        if ($users->isEmpty()) {
             return response()->json([
                 'errors' => 'Ningún usuario disponible'
             ], Response::HTTP_NOT_FOUND);
@@ -31,7 +35,7 @@ class UsersController extends Controller
     {
         $users = JuegaLol::with('usuarioVideojuego.usuario')->get();
 
-        if ($users -> isEmpty()) {
+        if ($users->isEmpty()) {
             return response()->json([
                 'errors' => 'Ningún usuario disponible'
             ], Response::HTTP_NOT_FOUND);
@@ -46,7 +50,7 @@ class UsersController extends Controller
     {
         $users = JuegaValorant::with('usuarioVideojuego.usuario')->get();
 
-        if ($users -> isEmpty()) {
+        if ($users->isEmpty()) {
             return response()->json([
                 'errors' => 'Ningún usuario disponible'
             ], Response::HTTP_NOT_FOUND);
@@ -61,7 +65,7 @@ class UsersController extends Controller
     {
         $users = JuegaFortnite::with('usuarioVideojuego.usuario')->get();
 
-        if ($users -> isEmpty()) {
+        if ($users->isEmpty()) {
             return response()->json([
                 'errors' => 'Ningún usuario disponible'
             ], Response::HTTP_NOT_FOUND);
@@ -72,37 +76,288 @@ class UsersController extends Controller
         ], Response::HTTP_OK);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function createLolUser(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'username' => 'required|string|max:25',
+                'posicion' => 'required|string|max:25',
+                'rango' => 'required|string|max:25',
+                'idiomas' => 'required|string|max:25',
+                'descripcion' => 'required|string|max:90',
+                'contacto' => 'required'
+            ]);
+
+            $usuario_videojuego = UsuarioVideojuego::create([
+                'user_id' => $request->user,
+                'id_videojuego' => $request->game
+            ]);
+
+            $juegaLol = JuegaLol::create([
+                'id_usuario_videojuego' => $usuario_videojuego->id_usuario_videojuego,
+                'username' => $request->username,
+                'posicion' => $request->posicion,
+                'rango' => $request->rango,
+                'idiomas' => $request->idiomas,
+                'descripcion' => $request->descripcion,
+                'contacto' => $request->contacto
+            ]);
+
+            return response()->json([
+                'message' => 'Usuario registrado en League of Legends correctamente',
+                'data' => $juegaLol
+            ], Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Error al crear usuario LoL: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error al registrar el usuario en League of Legends',
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
-    public function update(Request $request, string $id)
+    public function createValorantUser(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:25',
-            'email' => 'required|email',
-            'password' => 'required|string|max:25'
-        ]);
-    
-        $user = User::where('id', $id);
-    
-        if (is_null($user)) {
+        try {
+            $request->validate([
+                'username' => 'required|string|max:25',
+                'rango' => 'required|string|max:25',
+                'idiomas' => 'required|string|max:25',
+                'descripcion' => 'required|string|max:90',
+                'contacto' => 'required'
+            ]);
+
+            $usuario_videojuego = UsuarioVideojuego::create([
+                'user_id' => $request->user,
+                'id_videojuego' => $request->game
+            ]);
+
+            $juegaValorant = JuegaValorant::create([
+                'id_usuario_videojuego' => $usuario_videojuego->id_usuario_videojuego,
+                'username' => $request->username,
+                'clase' => $request->clase,
+                'rango' => $request->rango,
+                'idiomas' => $request->idiomas,
+                'descripcion' => $request->descripcion,
+                'contacto' => $request->contacto
+            ]);
+
             return response()->json([
-                'errors' => 'Usuario no encontrado.',
-            ], Response::HTTP_NOT_FOUND);
+                'message' => 'Usuario registrado en Valorant correctamente',
+                'data' => $juegaValorant
+            ], Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Error al crear usuario Valorant: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error al registrar el usuario en Valorant',
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-    
-        $user->update($request->all());
-    
+    }
+
+    public function createFortniteUser(Request $request)
+    {
+        try {
+            $request->validate([
+                'username' => 'required|string|max:25',
+                'rango' => 'required|string|max:25',
+                'idiomas' => 'required|string|max:25',
+                'descripcion' => 'required|string|max:90',
+                'contacto' => 'required'
+            ]);
+
+            $usuario_videojuego = UsuarioVideojuego::create([
+                'user_id' => $request->user,
+                'id_videojuego' => $request->game
+            ]);
+
+            $juegaFortnite = JuegaFortnite::create([
+                'id_usuario_videojuego' => $usuario_videojuego->id_usuario_videojuego,
+                'username' => $request->username,
+                'posicion' => $request->posicion,
+                'rango' => $request->rango,
+                'idiomas' => $request->idiomas,
+                'descripcion' => $request->descripcion,
+                'contacto' => $request->contacto
+            ]);
+
+            return response()->json([
+                'message' => 'Usuario registrado en Fortnite correctamente',
+                'data' => $juegaFortnite
+            ], Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Error al crear usuario Fortnite: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error al registrar el usuario en Fortnite',
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function suscripcionesUsuario($id, $juego)
+    {
+        $relaciones = [
+            'league of legends' => 'juegaLoL',
+            'valorant' => 'juegaValorant',
+            'fortnite' => 'juegaFortnite',
+        ];
+
+        $relacion = $relaciones[strtolower($juego)] ?? null;
+
+        if (!$relacion) {
+            return response()->json([
+                'error' => 'Juego no soportado'
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        $suscripcion = UsuarioVideojuego::with($relacion)
+            ->where('user_id', $id)
+            ->whereHas($relacion)
+            ->first();
+
         return response()->json([
-            'message' => 'Usuario actualizado correctamente',
-            'data' => $user
+            'data' => $suscripcion?->$relacion
         ], Response::HTTP_OK);
     }
+
+    public function updateLolUser(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'username' => 'required|string|max:25',
+                'posicion' => 'required|string|max:25',
+                'rango' => 'required|string|max:25',
+                'idiomas' => 'required|string|max:25',
+                'descripcion' => 'required|string|max:90',
+                'contacto' => 'required'
+            ]);
+
+            $juegaLol = JuegaLol::findOrFail($id);
+
+            $juegaLol->update([
+                'username' => $request->username,
+                'posicion' => $request->posicion,
+                'rango' => $request->rango,
+                'idiomas' => $request->idiomas,
+                'descripcion' => $request->descripcion,
+                'contacto' => $request->contacto
+            ]);
+
+            return response()->json([
+                'message' => 'Datos de League of Legends actualizados correctamente',
+                'data' => $juegaLol
+            ], Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Error al actualizar usuario LoL: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error al actualizar los datos de League of Legends',
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function updateValorantUser(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'username' => 'required|string|max:25',
+                'clase' => 'nullable|string|max:25',
+                'rango' => 'required|string|max:25',
+                'idiomas' => 'required|string|max:25',
+                'descripcion' => 'required|string|max:90',
+                'contacto' => 'required'
+            ]);
+
+            $juegaValorant = JuegaValorant::findOrFail($id);
+
+            $juegaValorant->update([
+                'username' => $request->username,
+                'clase' => $request->clase,
+                'rango' => $request->rango,
+                'idiomas' => $request->idiomas,
+                'descripcion' => $request->descripcion,
+                'contacto' => $request->contacto
+            ]);
+
+            return response()->json([
+                'message' => 'Datos de Valorant actualizados correctamente',
+                'data' => $juegaValorant
+            ], Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Error al actualizar usuario Valorant: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error al actualizar los datos de Valorant',
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    public function updateFortniteUser(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'username' => 'required|string|max:25',
+                'rango' => 'required|string|max:25',
+                'idiomas' => 'required|string|max:25',
+                'descripcion' => 'required|string|max:90',
+                'contacto' => 'required'
+            ]);
+
+            $juegaFortnite = JuegaFortnite::findOrFail($id);
+
+            $juegaFortnite->update([
+                'username' => $request->username,
+                'posicion' => $request->posicion,
+                'rango' => $request->rango,
+                'idiomas' => $request->idiomas,
+                'descripcion' => $request->descripcion,
+                'contacto' => $request->contacto
+            ]);
+
+            return response()->json([
+                'message' => 'Datos de Fortnite actualizados correctamente',
+                'data' => $juegaFortnite
+            ], Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Error al actualizar usuario Fortnite: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error al actualizar los datos de Fortnite',
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     public function destroy(string $id)
     {
