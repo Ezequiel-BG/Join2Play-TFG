@@ -7,10 +7,11 @@ import { FortniteformComponent } from "../../forms/fortniteform/fortniteform.com
 import { TokenService } from '../../services/token.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-game-register',
-  imports: [CommonModule, LolformComponent, ValorantformComponent, FortniteformComponent],
+  imports: [CommonModule, LolformComponent, ValorantformComponent, FortniteformComponent, FormsModule],
   templateUrl: './game-register.component.html',
   styleUrl: './game-register.component.css'
 })
@@ -18,6 +19,8 @@ export class GameRegisterComponent {
   isAuthenticated = inject(TokenService).isAuthenticated();
   errors: any;
   games: any;
+  search: string = '';
+  filteredGames: any[] = [];
   loading: boolean = true;
   showLOLModal = false;
   showValorantModal = false;
@@ -27,7 +30,7 @@ export class GameRegisterComponent {
     private gameService: GamesServiceService,
     private router: Router
   ) {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   }
 
   ngOnInit(): void {
@@ -39,20 +42,27 @@ export class GameRegisterComponent {
     });
   }
 
-  handleResponse (data: any) {
+  handleResponse(data: any) {
     this.games = data.games
+    this.filteredGames = [...this.games]
     this.loading = false
   }
 
-  handleErrors (error: any) {
+  handleErrors(error: any) {
     this.errors = 'Error al cargar los juegos'
-    console.log(this.errors);
     this.loading = false
   }
 
   private cleanErrors(): void {
     this.errors = null;
   }
+
+  filterGames() {
+  const searchedGame = this.search.toLowerCase();
+  this.filteredGames = this.games.filter((game: any) =>
+    game.nombre.toLowerCase().includes(searchedGame)
+  );
+}
 
   openForm(form: string) {
     if (!this.isAuthenticated) {

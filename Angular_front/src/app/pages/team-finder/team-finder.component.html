@@ -7,7 +7,8 @@
     <h2>¡Inicia sesión y conoce al resto de jugadores!</h2>
     <a routerLink="/login" class="btn">Inicia sesión</a>
 </div>
-<div class="unauthenticated-alert" *ngIf="!is_lol_user && !is_valorant_user && !is_fortnite_user && !loading && !errors">
+<div class="unauthenticated-alert"
+    *ngIf="!is_lol_user && !is_valorant_user && !is_fortnite_user && !loading && !errors">
     <h2>¡Regístrate en tus juegos favoritos para conocer al resto de jugadores!</h2>
     <a routerLink="/game-register" class="btn">Registrarse</a>
 </div>
@@ -20,61 +21,70 @@
 <div class="users-container" *ngIf="isAuthenticated && !loading && !errors">
     <div class="users" *ngIf="is_lol_user">
         <h2>Jugadores de League of Legends</h2>
-        <table class="users-table">
-            <tr class="table-headers">
-                <th>Username</th>
-                <th>Posición</th>
-                <th>Rango</th>
-                <th>Idiomas</th>
-                <th>Descripción</th>
-                <th></th>
-            </tr>
-            <tr *ngFor="let user of lol_users; let i = index" class="table-tracks">
-                <td>{{ user.username }}</td>
-                <td>{{ user.posicion }}</td>
-                <td><span class="badge">{{user.rango}}</span></td>
-                <td><span class="badge">{{user.idiomas}}</span></td>
-                <td>{{ user.descripcion }}</td>
-                <td><a href="" class="btn">Contacto</a></td>
-            </tr>
-        </table>
+        <div class="table-container">
+            <table class="users-table">
+                <tr class="table-headers">
+                    <th>Username</th>
+                    <th>Posición</th>
+                    <th>Rango</th>
+                    <th>Idiomas</th>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let user of lol_users; let i = index" class="table-tracks">
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.posicion }}</td>
+                    <td><span class="badge">{{user.rango}}</span></td>
+                    <td><span class="badge">{{user.idiomas}}</span></td>
+                    <td>{{ user.descripcion }}</td>
+                    <td><button href="" class="btn" (click)="openContactModal()">Contacto</button></td>
+                    <app-contact-info *ngIf="contactModalOpen" [discordUsername]="user.contacto" (closeModal)="contactModalOpen = false"></app-contact-info>
+                </tr>
+            </table>
+        </div>
     </div>
     <div class="users" *ngIf="is_valorant_user">
         <h2>Jugadores de Valorant</h2>
-        <table class="users-table">
-            <tr class="table-headers">
-                <th>Username</th>
-                <th>Rango</th>
-                <th>Idiomas</th>
-                <th>Descripción</th>
-                <th></th>
-            </tr>
-            <tr *ngFor="let user of valorant_users; let i = index" class="table-tracks">
-                <td>{{ user.username }}</td>
-                <td><span class="badge">{{user.rango}}</span></td>
-                <td><span class="badge">{{user.idiomas}}</span></td>
-                <td>{{ user.descripcion }}</td>
-                <td><a href="" class="btn">Contacto</a></td>
-            </tr>
-        </table>
+        <div class="table-container">
+            <table class="users-table">
+                <tr class="table-headers">
+                    <th>Username</th>
+                    <th>Rango</th>
+                    <th>Idiomas</th>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let user of valorant_users; let i = index" class="table-tracks">
+                    <td>{{ user.username }}</td>
+                    <td><span class="badge">{{user.rango}}</span></td>
+                    <td><span class="badge">{{user.idiomas}}</span></td>
+                    <td>{{ user.descripcion }}</td>
+                    <td><button href="" class="btn" (click)="openContactModal()">Contacto</button></td>
+                    <app-contact-info *ngIf="contactModalOpen" [discordUsername]="user.contacto" (closeModal)="contactModalOpen = false"></app-contact-info>
+                </tr>
+            </table>
+        </div>
     </div>
     <div class="users" *ngIf="is_fortnite_user">
         <h2>Jugadores de Fortnite</h2>
-        <table class="users-table">
-            <tr class="table-headers">
-                <th>Username</th>
-                <th>Rango</th>
-                <th>Idiomas</th>
-                <th>Descripción</th>
-                <th></th>
-            </tr>
-            <tr *ngFor="let user of fortnite_users; let i = index" class="table-tracks">
-                <td>{{ user.username }}</td>
-                <td><span class="badge">{{user.rango}}</span></td>
-                <td><span class="badge">{{user.idiomas}}</span></td>
-                <td>{{ user.descripcion }}</td>
-                <td><a href="" class="btn">Contacto</a></td>
-            </tr>
-        </table>
+        <div class="table-container">
+            <table class="users-table">
+                <tr class="table-headers">
+                    <th>Username</th>
+                    <th>Rango</th>
+                    <th>Idiomas</th>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let user of fortnite_users; let i = index" class="table-tracks">
+                    <td>{{ user.username }}</td>
+                    <td><span class="badge">{{user.rango}}</span></td>
+                    <td><span class="badge">{{user.idiomas}}</span></td>
+                    <td>{{ user.descripcion }}</td>
+                    <td><button href="" class="btn" (click)="openContactModal()">Contacto</button></td>
+                    <app-contact-info *ngIf="contactModalOpen" [discordUsername]="user.contacto" (closeModal)="contactModalOpen = false"></app-contact-info>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

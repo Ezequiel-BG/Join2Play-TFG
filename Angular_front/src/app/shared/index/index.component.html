@@ -10,12 +10,17 @@
         <a routerLink="team-finder">TeamFinder</a>
         <a routerLink="game-register">Registros</a>
         <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
-        <a *ngIf="isLoggedIn" (click)="logout()" routerLink="">Cerrar Sesión</a>
+        <a *ngIf="isLoggedIn" (click)="logout()" routerLink="" class="logout">Cerrar Sesión</a>
     </aside>
     <nav class="nav-desktop">
         <a routerLink="team-finder">TeamFinder</a>
         <a routerLink="game-register">Registros</a>
         <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
-        <a *ngIf="isLoggedIn" (click)="logout()" routerLink="">Cerrar sesión</a>
+        <div *ngIf="isLoggedIn" class="user-menu" (click)="toggleUserMenu()">
+            <span>Hola, {{ userName }}</span>
+            <div class="dropdown" *ngIf="showUserMenu">
+                <a (click)="logout()" class="logout">Cerrar sesión</a>
+            </div>
+        </div>
     </nav>
 </div>

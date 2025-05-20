@@ -60,6 +60,12 @@
     border-collapse: collapse;
 }
 
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
 .table-headers th {
     color: rgba(122, 175, 140, 1);
     font-family: 'Exo 2', sans-serif;
@@ -85,4 +91,21 @@
     font-size: 0.8rem;
     font-weight: 500;
     display: inline-block;
+}
+
+@media (max-width: 1024px) {
+    .users-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 767px) {
+    .users-container {
+        width: 100%;
+    }
+
+    .users {
+        padding: 30px;
+        margin-bottom: 50px;
+    }
 }

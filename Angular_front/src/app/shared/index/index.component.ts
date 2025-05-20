@@ -12,13 +12,17 @@ import { CommonModule } from '@angular/common';
 })
 export class IndexComponent {
   menuOpen = false;
+  userName: string;
+  showUserMenu: boolean = false;
   isLoggedIn = inject(TokenService).isAuthenticated();
 
-  constructor (
+  constructor(
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router
-  ) {}
+  ) { 
+    this.userName = this.authService.getUserName();
+  }
 
   logout(): void {
     this.authService.logout().subscribe({
@@ -34,11 +38,15 @@ export class IndexComponent {
     window.location.href = '/';
   }
 
-  private handleErrors(errors: any):void {
+  private handleErrors(errors: any): void {
     console.log(errors.error);
   }
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+  }
+
+  toggleUserMenu() {
+    this.showUserMenu = !this.showUserMenu;
   }
 }

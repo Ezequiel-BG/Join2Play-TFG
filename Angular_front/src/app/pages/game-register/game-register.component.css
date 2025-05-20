@@ -125,6 +125,10 @@ form div {
         height: 35px;
     }
 
+    .game-cards-container {
+        gap: 50px;
+    }
+
     .game-card div {
         flex-direction: column;
         gap: 40px;

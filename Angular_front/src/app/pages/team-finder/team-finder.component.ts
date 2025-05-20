@@ -5,15 +5,17 @@ import { TokenService } from '../../services/token.service';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
+import { ContactInfoComponent } from '../../shared/contact-info/contact-info.component';
 
 @Component({
   selector: 'app-team-finder',
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, ContactInfoComponent],
   templateUrl: './team-finder.component.html',
   styleUrl: './team-finder.component.css'
 })
 export class TeamFinderComponent {
   isAuthenticated = inject(TokenService).isAuthenticated();
+  contactModalOpen = false;
   errors: any;
   lol_users: any;
   valorant_users: any;
@@ -99,6 +101,10 @@ export class TeamFinderComponent {
     this.errors = 'Error al cargar los usuarios de fortnite'
     console.log(this.errors);
     this.loading = false
+  }
+
+  openContactModal() {
+    this.contactModalOpen = true;
   }
 
   private cleanErrors(): void {

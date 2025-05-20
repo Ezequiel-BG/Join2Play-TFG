@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UsuarioVideojuego extends Model
 {
     protected $table = 'usuarios_videojuegos';
-
     protected $primaryKey = 'id_usuario_videojuego';
-
     protected $fillable = ['user_id', 'id_videojuego', 'fecha_registro'];
     
     public function usuario() {
