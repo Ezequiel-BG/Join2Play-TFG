@@ -8,7 +8,7 @@
     <a routerLink="/login" class="btn">Inicia sesión</a>
 </div>
 <div class="unauthenticated-alert"
-    *ngIf="!is_lol_user && !is_valorant_user && !is_fortnite_user && !loading && !errors">
+    *ngIf="!is_lol_user && !is_valorant_user && !is_fortnite_user && !loading && !errors && isAuthenticated">
     <h2>¡Regístrate en tus juegos favoritos para conocer al resto de jugadores!</h2>
     <a routerLink="/game-register" class="btn">Registrarse</a>
 </div>
@@ -18,8 +18,91 @@
 <div class="game-errors-container" *ngIf="errors">
     <h2>{{ errors }}</h2>
 </div>
-<div class="users-container" *ngIf="isAuthenticated && !loading && !errors">
-    <div class="users" *ngIf="is_lol_user">
+<div class="users-container" *ngIf="isAuthenticated && !loading && !errors && (is_lol_user || is_fortnite_user || is_valorant_user)">
+    <div class="form-container">
+        <select name="game_searched" id="game_id" class="select" (change)="onGameSelect($event)">
+            <option value="" disabled selected hidden>Seleccionar un juego</option>
+            <option value="">Mostrar todos</option>
+            <option value="League of Legends" *ngIf="is_lol_user">League of Legends</option>
+            <option value="Valorant" *ngIf="is_valorant_user">Valorant</option>
+            <option value="Fortnite" *ngIf="is_fortnite_user">Fortnite</option>
+        </select>
+        <div *ngIf="selectedGame === 'League of Legends'">
+            <select class="select" (change)="onLolFilterChange($event, 'posicion')">
+                <option value="">Todas las posiciones</option>
+                <option value="Top">Top</option>
+                <option value="Jungle">Jungle</option>
+                <option value="Mid">Mid</option>
+                <option value="ADC">ADC</option>
+                <option value="Support">Support</option>
+            </select>
+            <select class="select" (change)="onLolFilterChange($event, 'rango')">
+                <option value="">Todos los rangos</option>
+                <option value="Hierro">Hierro</option>
+                <option value="Bronce">Bronce</option>
+                <option value="Plata">Plata</option>
+                <option value="Oro">Oro</option>
+                <option value="Platino">Platino</option>
+                <option value="Esmeralda">Esmeralda</option>
+                <option value="Diamante">Diamante</option>
+                <option value="Master">Master</option>
+                <option value="Grandmaster">Grandmaster</option>
+                <option value="Challenger">Challenger</option>
+            </select>
+            <select class="select" (change)="onLolFilterChange($event, 'idiomas')">
+                <option value="">Todos los idiomas</option>
+                <option value="Español">Español</option>
+                <option value="Inglés">Inglés</option>
+                <option value="Alemán">Alemán</option>
+                <option value="Chino">Chino</option>
+                <option value="Japonés">Japones</option>
+            </select>
+        </div>
+        <div *ngIf="selectedGame === 'Valorant'">
+            <select class="select" (change)="onValorantFilterChange($event, 'rango')">
+                <option value="">Todos los rangos</option>
+                <option value="Hierro">Hierro</option>
+                <option value="Bronce">Bronce</option>
+                <option value="Plata">Plata</option>
+                <option value="Oro">Oro</option>
+                <option value="Platino">Platino</option>
+                <option value="Diamante">Diamante</option>
+                <option value="Ascendente">Ascendente</option>
+                <option value="Inmortal">Inmortal</option>
+                <option value="Radiante">Radiante</option>
+            </select>
+            <select class="select" (change)="onValorantFilterChange($event, 'idiomas')">
+                <option value="">Todos los idiomas</option>
+                <option value="Español">Español</option>
+                <option value="Inglés">Inglés</option>
+                <option value="Alemán">Alemán</option>
+                <option value="Chino">Chino</option>
+                <option value="Japonés">Japones</option>
+            </select>
+        </div>
+        <div *ngIf="selectedGame === 'Fortnite'">
+            <select class="select" (change)="onFortniteFilterChange($event, 'rango')">
+                <option value="">Todos los rangos</option>
+                <option value="Bronce">Bronce</option>
+                <option value="Plata">Plata</option>
+                <option value="Oro">Oro</option>
+                <option value="Platino">Platino</option>
+                <option value="Diamante">Diamante</option>
+                <option value="Elite">Elite</option>
+                <option value="Campeon">Campeon</option>
+                <option value="Unreal">Unreal</option>
+            </select>
+            <select class="select" (change)="onFortniteFilterChange($event, 'idiomas')">
+                <option value="">Todos los idiomas</option>
+                <option value="Español">Español</option>
+                <option value="Inglés">Inglés</option>
+                <option value="Alemán">Alemán</option>
+                <option value="Chino">Chino</option>
+                <option value="Japonés">Japones</option>
+            </select>
+        </div>
+    </div>
+    <div class="users" *ngIf="is_lol_user && show_lol_table">
         <h2>Jugadores de League of Legends</h2>
         <div class="table-container">
             <table class="users-table">
@@ -31,19 +114,28 @@
                     <th>Descripción</th>
                     <th></th>
                 </tr>
-                <tr *ngFor="let user of lol_users; let i = index" class="table-tracks">
+                <tr *ngFor="let user of (filtered_lol_users | slice:(lolPage-1)*pageSize : lolPage*pageSize); let i = index"
+                    class="table-tracks">
                     <td>{{ user.username }}</td>
                     <td>{{ user.posicion }}</td>
-                    <td><span class="badge">{{user.rango}}</span></td>
-                    <td><span class="badge">{{user.idiomas}}</span></td>
+                    <td><span class="badge">{{ user.rango }}</span></td>
+                    <td><span class="badge">{{ user.idiomas }}</span></td>
                     <td>{{ user.descripcion }}</td>
-                    <td><button href="" class="btn" (click)="openContactModal()">Contacto</button></td>
-                    <app-contact-info *ngIf="contactModalOpen" [discordUsername]="user.contacto" (closeModal)="contactModalOpen = false"></app-contact-info>
+                    <td><button href="" class="btn" (click)="openContactModal(user)">Contacto</button></td>
                 </tr>
+                <app-contact-info *ngIf="selectedUser" [discordUsername]="selectedUser.contacto"
+                    (closeModal)="closeModal()"></app-contact-info>
             </table>
+            <div class="pagination-controls">
+                <button (click)="prevLolPage()" [disabled]="lolPage <= 1" class="pagination-control">Página
+                    anterior</button>
+                <p>Página {{ lolPage }} de {{ totalLolPages }}</p>
+                <button (click)="nextLolPage()" [disabled]="lolPage >= totalLolPages" class="pagination-control">Página
+                    siguiente</button>
+            </div>
         </div>
     </div>
-    <div class="users" *ngIf="is_valorant_user">
+    <div class="users" *ngIf="is_valorant_user && show_valorant_table">
         <h2>Jugadores de Valorant</h2>
         <div class="table-container">
             <table class="users-table">
@@ -54,18 +146,27 @@
                     <th>Descripción</th>
                     <th></th>
                 </tr>
-                <tr *ngFor="let user of valorant_users; let i = index" class="table-tracks">
+                <tr *ngFor="let user of (filtered_valorant_users | slice:(valorantPage-1)*pageSize : valorantPage*pageSize); let i = index"
+                    class="table-tracks">
                     <td>{{ user.username }}</td>
-                    <td><span class="badge">{{user.rango}}</span></td>
-                    <td><span class="badge">{{user.idiomas}}</span></td>
+                    <td><span class="badge">{{ user.rango }}</span></td>
+                    <td><span class="badge">{{user.idiomas }}</span></td>
                     <td>{{ user.descripcion }}</td>
-                    <td><button href="" class="btn" (click)="openContactModal()">Contacto</button></td>
-                    <app-contact-info *ngIf="contactModalOpen" [discordUsername]="user.contacto" (closeModal)="contactModalOpen = false"></app-contact-info>
+                    <td><button href="" class="btn" (click)="openContactModal(user)">Contacto</button></td>
                 </tr>
+                <app-contact-info *ngIf="selectedUser" [discordUsername]="selectedUser.contacto"
+                    (closeModal)="closeModal()"></app-contact-info>
             </table>
+            <div class="pagination-controls">
+                <button (click)="prevValorantPage()" [disabled]="valorantPage <= 1" class="pagination-control">Página
+                    anterior</button>
+                <p>Página {{ valorantPage }} de {{totalValorantPages}}</p>
+                <button (click)="nextValorantPage()" [disabled]="valorantPage >= totalValorantPages"
+                    class="pagination-control">Página siguiente</button>
+            </div>
         </div>
     </div>
-    <div class="users" *ngIf="is_fortnite_user">
+    <div class="users" *ngIf="is_fortnite_user && show_fortnite_table">
         <h2>Jugadores de Fortnite</h2>
         <div class="table-container">
             <table class="users-table">
@@ -76,15 +177,24 @@
                     <th>Descripción</th>
                     <th></th>
                 </tr>
-                <tr *ngFor="let user of fortnite_users; let i = index" class="table-tracks">
+                <tr *ngFor="let user of (filtered_fortnite_users | slice:(fortnitePage-1)*pageSize : fortnitePage*pageSize); let i = index"
+                    class="table-tracks">
                     <td>{{ user.username }}</td>
                     <td><span class="badge">{{user.rango}}</span></td>
                     <td><span class="badge">{{user.idiomas}}</span></td>
                     <td>{{ user.descripcion }}</td>
-                    <td><button href="" class="btn" (click)="openContactModal()">Contacto</button></td>
-                    <app-contact-info *ngIf="contactModalOpen" [discordUsername]="user.contacto" (closeModal)="contactModalOpen = false"></app-contact-info>
+                    <td><button href="" class="btn" (click)="openContactModal(user)">Contacto</button></td>
                 </tr>
+                <app-contact-info *ngIf="selectedUser" [discordUsername]="selectedUser.contacto"
+                    (closeModal)="closeModal()"></app-contact-info>
             </table>
+            <div class="pagination-controls">
+                <button (click)="prevFortnitePage()" [disabled]="fortnitePage <= 1" class="pagination-control">Página
+                    anterior</button>
+                <p>Página {{ fortnitePage }} de {{totalFortnitePages}}</p>
+                <button (click)="nextFortnitePage()" [disabled]="fortnitePage >= totalFortnitePages"
+                    class="pagination-control">Página siguiente</button>
+            </div>
         </div>
     </div>
 </div>

@@ -1,9 +1,36 @@
 .header-welcome {
-    background-image: linear-gradient(to bottom,
+    position: relative;
+    overflow: hidden;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: fadeInBackground 2s ease-out forwards;
+}
+
+.header-welcome::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(to bottom,
             rgba(33, 33, 33, 0) 0%,
             rgba(33, 33, 33, 0) 65%,
             rgba(33, 33, 33, 1) 100%),
         url(../../../../public/assets/teamFinder-welcome-img.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1.05);
+    animation: fadeInBackground 2s ease-out forwards;
+    z-index: 1;
+}
+
+.header-welcome>* {
+    position: relative;
+    z-index: 2;
 }
 
 .loading-container,
@@ -34,7 +61,7 @@
 }
 
 .unauthenticated-alert h2 {
-    font-family: "Audiowide"; 
+    font-family: "Audiowide";
     width: 100%;
     margin-bottom: 60px;
 }
@@ -61,9 +88,9 @@
 }
 
 .table-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-bottom: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
 }
 
 .table-headers th {
@@ -85,12 +112,69 @@
 
 .badge {
     background-color: #333;
-    color: white;
+    color: rgba(239, 239, 239, 1);
     padding: 5px 12px;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: 500;
     display: inline-block;
+}
+
+.pagination-controls {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-control {
+    color: rgba(239, 239, 239, 1);
+    font-family: "Exo 2";
+    font-size: 18px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #333;
+    transition: 0.5s;
+}
+
+.pagination-control:hover {
+    background-color: #414141;
+}
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.select {
+    background-color: #333;
+    color: rgba(239, 239, 239, 1);
+    border: 2px solid rgba(122, 175, 140, 1);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-family: 'Exo 2';
+    font-size: 18px;
+    appearance: none;
+    cursor: pointer;
+    min-width: 200px;
+    box-shadow: 0 0 5px rgb(92, 129, 105);
+}
+
+.select:focus {
+    outline: none;
+    border-color: #81c784;
+    box-shadow: 0 0 10px #81c784;
+}
+
+@keyframes fadeInBackground {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 @media (max-width: 1024px) {
@@ -107,5 +191,10 @@
     .users {
         padding: 30px;
         margin-bottom: 50px;
+    }
+
+    .pagination-control {
+        font-size: 16px;
+        padding: 5px;
     }
 }

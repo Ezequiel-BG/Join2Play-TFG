@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import Typed from 'typed.js';
 
 @Component({
   selector: 'app-landing',
@@ -9,6 +10,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './landing.component.css'
 })
 export class LandingComponent {
+
+  @ViewChild('typedText') typedTextRef!: ElementRef;
+
   slides = [
     {
       image: 'assets/carousel-1.jpg',
@@ -50,6 +54,22 @@ export class LandingComponent {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
+  }
+
+  ngAfterViewInit(): void {
+    const options = {
+      strings: [
+        'Inicia sesión y descubre jugadores como tú, listos para formar equipo.',
+        'Explora perfiles, encuentra afinidades y únete a partidas en los juegos que más te gustan.',
+      ],
+      typeSpeed: 40,
+      backSpeed: 20,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+    };
+
+    new Typed(this.typedTextRef.nativeElement, options);
   }
 
   nextSlide() {
