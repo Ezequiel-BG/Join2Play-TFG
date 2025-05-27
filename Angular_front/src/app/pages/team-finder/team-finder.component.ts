@@ -1,6 +1,6 @@
 import { NgIf } from '@angular/common';
 import { NgFor } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { TokenService } from '../../services/token.service';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 import { SlicePipe } from '@angular/common';
 import { ContactInfoComponent } from '../../shared/contact-info/contact-info.component';
 import { GameUser } from '../../models/game-user.model';
+import Typed from 'typed.js';
 
 @Component({
   selector: 'app-team-finder',
@@ -16,6 +17,9 @@ import { GameUser } from '../../models/game-user.model';
   styleUrl: './team-finder.component.css'
 })
 export class TeamFinderComponent {
+
+  @ViewChild('typedText') typedTextRef!: ElementRef;
+
   isAuthenticated = inject(TokenService).isAuthenticated();
   selectedUser: any = null;
   selectedGame: string = '';
@@ -86,6 +90,21 @@ export class TeamFinderComponent {
       complete: () => console.log('carga de usuarios de fortnite completa')
     });
   }
+
+  ngAfterViewInit(): void {
+      const options = {
+        strings: [
+          '¡Forma un equipo invencible!'
+        ],
+        typeSpeed: 30,
+        backSpeed: 20,
+        loop: false,
+        showCursor: true,
+        cursorChar: '|',
+      };
+  
+      new Typed(this.typedTextRef.nativeElement, options);
+    }
 
   //Manejo de respuestas de la API
   handleLolResponse(data: any) {

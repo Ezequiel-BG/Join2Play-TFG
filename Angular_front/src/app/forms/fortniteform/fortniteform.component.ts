@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { GamesServiceService } from '../../services/games.service.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-fortniteform',
@@ -23,7 +24,8 @@ export class FortniteformComponent {
     private userService: UserService,
     private authService: AuthService,
     private gameService: GamesServiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {
     const userId = this.authService.getUserId();
 
@@ -58,7 +60,7 @@ export class FortniteformComponent {
           this.close();
         },
         error: error => this.handleErrors(error),
-        complete: () => console.log('Petición completa')
+        complete: () => this.alertService.showSuccess('Datos actualizados correctamente')
       });
     } else {
       this.userService.createFortniteUser(this.registerForm.value).subscribe({
@@ -67,7 +69,7 @@ export class FortniteformComponent {
           this.close();
         },
         error: error => this.handleErrors(error),
-        complete: () => console.log('Petición completa')
+        complete: () => this.alertService.showSuccess('Datos registrados correctamente')
       });
     }
   }

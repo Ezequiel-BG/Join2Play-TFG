@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -18,14 +19,16 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {
     window.scrollTo(0,0)
     this.registerForm = this.fb.group({
       name: [''],
       email: [''],
       password: [''],
-      password_confirmation: ['']
+      password_confirmation: [''],
+      isAdmin : false
     });
   }
 
@@ -41,7 +44,7 @@ export class RegisterComponent {
 
   private handleResponse(response: any): void {
     console.log(response.message);
-    this.router.navigateByUrl('/login');
+    window.location.href = '/login';
   }
 
   private handleErrors(errors: any): void {

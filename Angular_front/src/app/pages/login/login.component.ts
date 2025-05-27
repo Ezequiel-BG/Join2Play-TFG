@@ -16,6 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   errors: any;
   showErrorBox = true;
+  isAdmin: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -43,7 +44,12 @@ export class LoginComponent {
   handleResponse(response: any): void {
     console.log(response.message);
     this.tokenService.handleToken(response.token);
-    window.location.href = '/';
+    this.isAdmin = this.authService.isAdmin();
+    if (this.isAdmin) {
+      window.location.href = '/panel-admin';
+    } else {
+      window.location.href = '/';
+    }
   }
 
   private handleErrors(errors: any): void {

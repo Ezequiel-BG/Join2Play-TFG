@@ -34,7 +34,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $user = User::create($request->validated());
-
+        
         return response()->json([
             'message' => 'Usuario registrado exitosamente.'
         ], Response::HTTP_CREATED);

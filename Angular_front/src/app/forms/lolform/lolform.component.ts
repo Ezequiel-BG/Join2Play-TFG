@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { GamesServiceService } from '../../services/games.service.service';
 import { disableDebugTools } from '@angular/platform-browser';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-lolform',
@@ -22,7 +23,8 @@ export class LolformComponent {
     private userService: UserService,
     private authService: AuthService,
     private gameService: GamesServiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {
     const userId = this.authService.getUserId();
   
@@ -58,7 +60,7 @@ export class LolformComponent {
           this.close();
         },
         error: error => this.handleErrors(error),
-        complete: () => console.log('Petición completa')
+        complete: () => this.alertService.showSuccess('Datos actualizados correctamente')
       });
     } else {
       this.userService.createLolUser(this.registerForm.value).subscribe({
@@ -67,7 +69,7 @@ export class LolformComponent {
           this.close();
         },
         error: error => this.handleErrors(error),
-        complete: () => console.log('Petición completa')
+        complete: () => this.alertService.showSuccess('Datos registrados correctamente')
       });
     }
   }

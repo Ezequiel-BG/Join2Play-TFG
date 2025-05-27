@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import Typed from 'typed.js';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-landing',
@@ -40,7 +41,9 @@ export class LandingComponent {
   currentSlide = 0;
   intervalId: any;
 
-  constructor () {
+  constructor (
+    private alertService: AlertService
+  ) {
     window.scrollTo(0,0)
   }
 
@@ -59,10 +62,12 @@ export class LandingComponent {
   ngAfterViewInit(): void {
     const options = {
       strings: [
-        'Inicia sesión y descubre jugadores como tú, listos para formar equipo.',
-        'Explora perfiles, encuentra afinidades y únete a partidas en los juegos que más te gustan.',
+        '¡Bienvenido a Join2Play!',
+        '¡Encuentra compañeros de equipo!',
+        '¡Explora las posibilidades!'
       ],
       typeSpeed: 40,
+      backDelay: 2000,
       backSpeed: 20,
       loop: true,
       showCursor: true,

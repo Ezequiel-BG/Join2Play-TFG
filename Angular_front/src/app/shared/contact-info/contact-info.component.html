@@ -1,7 +1,8 @@
-<div class="backdrop" (click)="close()"></div>
-<div class="modal">
-    <h2>Información de contacto</h2>
-    <p>Puedes contactar con este usuario por Discord:</p>
-    <p class="badge">{{ discordUsername }}</p>
-    <button (click)="close()" class="btn">Cerrar</button>
+<div class="backdrop" (click)="close()">
+    <div class="modal">
+        <h2>Información de contacto</h2>
+        <p>Puedes contactar con este usuario por Discord:</p>
+        <p class="badge">{{ discordUsername }}</p>
+        <button (click)="close()" class="btn">Cerrar</button>
+    </div>
 </div>

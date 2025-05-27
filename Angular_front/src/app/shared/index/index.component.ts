@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../services/token.service';
 import { CommonModule } from '@angular/common';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-index',
@@ -13,15 +14,18 @@ import { CommonModule } from '@angular/common';
 export class IndexComponent {
   menuOpen = false;
   userName: string;
+  isAdmin: boolean;
   showUserMenu: boolean = false;
   isLoggedIn = inject(TokenService).isAuthenticated();
 
   constructor(
     private authService: AuthService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { 
     this.userName = this.authService.getUserName();
+    this.isAdmin = this.authService.isAdmin();
   }
 
   logout(): void {

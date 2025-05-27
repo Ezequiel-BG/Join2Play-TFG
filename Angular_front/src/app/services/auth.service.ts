@@ -26,6 +26,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
+    localStorage.removeItem('user');
     return this.http.delete(`${this.API_URL}/logout`)
   }
 
@@ -39,5 +40,11 @@ export class AuthService {
     const user = localStorage.getItem('user');
     if (!user) return null;
     return JSON.parse(user).name;
+  }
+
+  isAdmin() {
+    const user = localStorage.getItem('user');
+    if (!user) return false;
+    return JSON.parse(user).isAdmin;
   }
 }
