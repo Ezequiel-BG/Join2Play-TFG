@@ -358,13 +358,54 @@ class UsersController extends Controller
         }
     }
 
-
-    public function destroy(string $id)
+    public function destroyUser(string $id)
     {
-        User::where('id', $id)->delete();
+        User::findOrFail($id)->delete();
 
         return response()->json([
             'message' => 'Usuario eliminado correctamente'
         ], Response::HTTP_OK);
+    }
+
+    public function updateUser(Request $request, string $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+        ]);
+
+        $usuario = User::findOrFail($id);
+        $usuario->name = $validated['name'];
+        $usuario->email = $validated['email'];
+        $usuario->save();
+
+        return response()->json([
+            'message' => 'Usuario actualizado correctamente'
+        ], Response::HTTP_OK);
+    }
+
+    public function eliminarSuscripcion($usuarioId, $videojuegoId)
+    {
+        $relacion = UsuarioVideojuego::where('user_id', $usuarioId)
+            ->where('id_videojuego', $videojuegoId)
+            ->firstOrFail();
+
+        switch ($videojuegoId) {
+            case 1:
+                $relacion->juegaLol()?->delete();
+                break;
+            case 2:
+                $relacion->juegaValorant()?->delete();
+                break;
+            case 3:
+                $relacion->juegaFortnite()?->delete();
+                break;
+        }
+
+        $relacion->delete();
+
+        return response()->json([
+                'mensaje' => 'Suscripción al juego eliminada con éxito'
+            ], Response::HTTP_OK);
     }
 }

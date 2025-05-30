@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\api\UsersController;
 use App\Http\Controllers\api\VideogameController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //Rutas para el auth
@@ -19,14 +18,20 @@ Route::delete('game/{id}', [VideogameController::class, 'destroy']);
 
 //Rutas para el crud de usuarios
 Route::get('user', [UsersController::class, 'getUsers']);
+Route::post('user/{id}', [UsersController::class, 'updateUser']);
+Route::delete('user/{id}', [UsersController::class, 'destroyUser']);
+
 Route::get('lol_user', [UsersController::class, 'getLolUsers']);
-Route::get('valorant_user', [UsersController::class, 'getValorantUsers']);
-Route::get('fortnite_user', [UsersController::class, 'getFortniteUsers']);
 Route::post('lol_user/create', [UsersController::class, 'createLolUser']);
-Route::post('valorant_user/create', [UsersController::class, 'createValorantUser']);
-Route::post('fortnite_user/create', [UsersController::class, 'createFortniteUser']);
-Route::get('suscripcionesUsers/{id}/{juego}', [UsersController::class, 'suscripcionesUsuario']);
 Route::post('lol_user/update/{id}', [UsersController::class, 'updateLolUser']);
+
+Route::get('valorant_user', [UsersController::class, 'getValorantUsers']);
+Route::post('valorant_user/create', [UsersController::class, 'createValorantUser']);
 Route::post('valorant_user/update/{id}', [UsersController::class, 'updateValorantUser']);
+
+Route::get('fortnite_user', [UsersController::class, 'getFortniteUsers']);
+Route::post('fortnite_user/create', [UsersController::class, 'createFortniteUser']);
 Route::post('fortnite_user/update/{id}', [UsersController::class, 'updateFortniteUser']);
-Route::delete('user/{id}', [UsersController::class, 'destroy']);
+
+Route::get('suscripcionesUsers/{id}/{juego}', [UsersController::class, 'suscripcionesUsuario']);
+Route::delete('user/{usuarioId}/{videojuegoId}', [UsersController::class, 'eliminarSuscripcion']);

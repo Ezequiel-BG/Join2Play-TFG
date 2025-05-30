@@ -41,7 +41,7 @@ class JuegaFortniteSeeder extends Seeder
                 'id_usuario_videojuego' => 10,
                 'username' => 'BuilderJuan',
                 'rango' => 'Diamante',
-                'idiomas' => 'Español, Inglés',
+                'idiomas' => 'Español',
                 'descripcion' => 'Creativo y ranked',
                 'contacto' => 'juanAnalBerto#0987'
             ]

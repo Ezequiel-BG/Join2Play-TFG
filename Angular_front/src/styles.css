@@ -63,6 +63,7 @@ body {
     background-color: rgba(122, 175, 140, 1);
     transition: 0.5s;
     border: none;
+    cursor: pointer;
 }
 
 .btn:hover {

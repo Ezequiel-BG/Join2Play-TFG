@@ -82,4 +82,12 @@ export class LolformComponent {
     this.errors = errors.error?.errors || { general: 'Error al enviar el formulario.' };
     console.log(this.errors);
   }
+
+  ngOnInit() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  ngOnDestroy() {
+    document.body.style.overflow = '';
+  }
 }

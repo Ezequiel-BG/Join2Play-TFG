@@ -7,20 +7,23 @@
     </div>
     <aside class="sidebar" [class.open]="menuOpen">
         <button class="close-btn" (click)="menuOpen = false">✕</button>
-        <a routerLink="team-finder" *ngIf="!isAdmin">TeamFinder</a>
-        <a routerLink="game-register" *ngIf="!isAdmin">Registros</a>
-        <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
+        <a routerLink="team-finder" *ngIf="!isAdmin" class="link" (click)="menuOpen = false">TeamFinder</a>
+        <a routerLink="game-register" *ngIf="!isAdmin" class="link" (click)="menuOpen = false">Registros</a>
+        <a *ngIf="!isLoggedIn" routerLink="/login" class="user" (click)="menuOpen = false">Iniciar Sesión</a>
+        <a *ngIf="isLoggedIn" routerLink="" (click)="abrirUserModal()" class="link">Ver perfil</a>
         <a *ngIf="isLoggedIn" (click)="logout()" routerLink="" class="logout">Cerrar Sesión</a>
     </aside>
     <nav class="nav-desktop">
-        <a routerLink="team-finder" *ngIf="!isAdmin">TeamFinder</a>
-        <a routerLink="game-register" *ngIf="!isAdmin">Registros</a>
-        <a *ngIf="!isLoggedIn" routerLink="/login">Iniciar Sesión</a>
+        <a routerLink="team-finder" *ngIf="!isAdmin" class="link" (click)="cerrarUserModal()">TeamFinder</a>
+        <a routerLink="game-register" *ngIf="!isAdmin" class="link" (click)="cerrarUserModal()">Registros</a>
+        <a *ngIf="!isLoggedIn" routerLink="/login" class="user">Iniciar Sesión</a>
         <div *ngIf="isLoggedIn" class="user-menu" (click)="toggleUserMenu()">
-            <span>Hola, {{ userName }}</span>
+            <span class="user">Hola, {{ userName }}</span>
             <div class="dropdown" *ngIf="showUserMenu">
+                <a *ngIf="isLoggedIn" routerLink="" class="dropdown-a" (click)="abrirUserModal()">Ver perfil</a>
                 <a (click)="logout()" class="logout">Cerrar sesión</a>
             </div>
         </div>
     </nav>
 </div>
+<app-perfil-usuario *ngIf="mostrarUserModal" (cerrarUserModal)="cerrarUserModal()" />

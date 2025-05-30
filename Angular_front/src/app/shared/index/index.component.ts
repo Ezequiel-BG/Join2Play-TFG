@@ -4,10 +4,11 @@ import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../services/token.service';
 import { CommonModule } from '@angular/common';
 import { AlertService } from '../../services/alert.service';
+import { PerfilUsuarioComponent } from '../perfil-usuario/perfil-usuario.component';
 
 @Component({
   selector: 'app-index',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, PerfilUsuarioComponent],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })
@@ -16,6 +17,7 @@ export class IndexComponent {
   userName: string;
   isAdmin: boolean;
   showUserMenu: boolean = false;
+  mostrarUserModal = false;
   isLoggedIn = inject(TokenService).isAuthenticated();
 
   constructor(
@@ -52,5 +54,13 @@ export class IndexComponent {
 
   toggleUserMenu() {
     this.showUserMenu = !this.showUserMenu;
+  }
+
+  abrirUserModal() {
+    this.mostrarUserModal = true;
+  }
+
+  cerrarUserModal() {
+    this.mostrarUserModal = false;
   }
 }

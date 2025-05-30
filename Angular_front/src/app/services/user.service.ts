@@ -55,7 +55,17 @@ export class UserService {
     return this.http.post(`${this.API_URL}/fortnite_user/update/${$id_usuario_videojuego}`, $data);
   }
 
-  revokeUser($user_id: number) {
+  destroyUser($user_id: number) {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
     return this.http.delete(`${this.API_URL}/user/${$user_id}`);
+  }
+
+  updateUser($data: any, $user_id: number) {
+    return this.http.post(`${this.API_URL}/user/${$user_id}`, $data);
+  }
+
+  revokeSuscription($user_id: number, $game_id: number) {
+    return this.http.delete(`${this.API_URL}/user/${$user_id}/${$game_id}`);
   }
 }

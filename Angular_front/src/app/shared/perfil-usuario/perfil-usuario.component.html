@@ -1,0 +1,44 @@
+<div class="backdrop">
+  <div class="modal">
+    <div class="banner"></div>
+    <h2>Edición del perfil</h2>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <div class="inputs">
+        <div class="input-wrapper">
+            <input type="text" formControlName="name" placeholder="{{userName}}" />
+          <img src="assets/edit-icon.png" alt="edit-icon" class="edit-icon">
+        </div>
+        <div class="input-wrapper">
+          <input type="email" formControlName="email" class="email" placeholder="{{userEmail}}" />
+          <img src="assets/edit-icon.png" alt="edit-icon" class="edit-icon">
+        </div>
+      </div>
+      <h3>Suscrito a:</h3>
+      <div class="suscripciones">
+        <div class="suscripcion" *ngIf="isLolUser && !loading">
+          <p>League of Legends</p>
+          <button class="eliminate" (click)="revokeSuscription(1)">✕</button>
+        </div>
+        <div class="suscripcion" *ngIf="isValorantUser && !loading">
+          <p>Valorant</p>
+          <button class="eliminate" (click)="revokeSuscription(2)">✕</button>
+        </div>
+        <div class="suscripcion" *ngIf="isFortniteUser && !loading">
+          <p>Fortnite</p>
+          <button class="eliminate" (click)="revokeSuscription(3)">✕</button>
+        </div>
+        <div class="loading-container" *ngIf="!isFortniteUser && !isLolUser && !isValorantUser && !loading">
+          <p>Ninguna suscripción registrada</p>
+        </div>
+        <div class="loading-container" *ngIf="loading">
+          <p>Cargando...</p>
+        </div>
+      </div>
+      <div class="acciones">
+        <button type="submit" [disabled]="form.invalid" class="btn">Guardar</button>
+        <button type="button" (click)="cerrar()" class="btn">Cancelar</button>
+      </div>
+      <span class="accountDelete" (click)="revokeUser()">Eliminar mi cuenta permanentemente</span>
+    </form>
+  </div>
+</div>

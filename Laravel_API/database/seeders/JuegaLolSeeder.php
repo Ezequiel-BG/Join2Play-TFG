@@ -36,7 +36,7 @@ class JuegaLolSeeder extends Seeder
                 'username' => 'LuciferMain',
                 'posicion' => 'Jungla',
                 'rango' => 'Platino',
-                'idiomas' => 'Español, Inglés',
+                'idiomas' => 'Inglés',
                 'descripcion' => 'Soy main jungla, serio y activo',
                 'contacto' => 'Luis#4311'
             ],

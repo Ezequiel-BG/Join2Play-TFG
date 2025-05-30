@@ -14,4 +14,12 @@ export class ContactInfoComponent {
   close() {
     this.closeModal.emit();
   }
+
+  ngOnInit() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  ngOnDestroy() {
+    document.body.style.overflow = '';
+  }
 }

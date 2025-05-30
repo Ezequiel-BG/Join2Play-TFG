@@ -25,7 +25,7 @@ class JuegaValorantSeeder extends Seeder
                 'id_usuario_videojuego' => 7,
                 'username' => 'ViperMain',
                 'rango' => 'Platino',
-                'idiomas' => 'Español, Inglés',
+                'idiomas' => 'Inglés',
                 'descripcion' => 'Busco equipo para ranked',
                 'contacto' => 'viper#0001'
             ],
