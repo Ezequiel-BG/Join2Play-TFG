@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../services/token.service';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { PerfilUsuarioComponent } from '../perfil-usuario/perfil-usuario.compone
 
 @Component({
   selector: 'app-index',
-  imports: [RouterLink, CommonModule, PerfilUsuarioComponent],
+  imports: [RouterLink, RouterModule, CommonModule, PerfilUsuarioComponent],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })

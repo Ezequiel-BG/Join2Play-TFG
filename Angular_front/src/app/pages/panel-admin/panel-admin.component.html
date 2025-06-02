@@ -1,1 +1,104 @@
-<h1>panel-admin works!</h1>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <nav>
+            <a class="link" (click)="setVisualizer('users')" [class.active] = "visualizingUser">Usuarios</a>
+            <a class="link" (click)="setVisualizer('lol')" [class.active] = "visualizingLol">League of Legends</a>
+            <a class="link" (click)="setVisualizer('valorant')" [class.active] = "visualizingValorant">Valorant</a>
+            <a class="link" (click)="setVisualizer('fortnite')" [class.active] = "visualizingFortnite">Fortnite</a>
+        </nav>
+    </aside>
+    <div class="main-container">
+        <div class="search-container">
+            <img src="assets/searcher-icon.png" alt="Lupa" class="searcher-icon">
+            <input type="text" name="searcher" id="searcher" placeholder="Buscar..." class="searcher" [(ngModel)]="search" (input)="filterGames()">
+        </div>
+        <div class="loading-container" *ngIf="loading">
+            <h2>Cargando usuarios...</h2>
+        </div>
+        <div class="game-errors-container" *ngIf="errors">
+            <h2>{{ errors }}</h2>
+        </div>
+        <div class="tables-container" *ngIf="!loading && !errors">
+            <div class="table" *ngIf="visualizingLol">
+                <table class="users-table">
+                    <tr class="table-headers">
+                        <th>Username</th>
+                        <th>Posición</th>
+                        <th>Rango</th>
+                        <th>Idiomas</th>
+                        <th>Descripción</th>
+                        <th>Contacto</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let user of filteredLolUsers ; let i = index" class="table-tracks">
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.posicion }}</td>
+                        <td><span class="badge">{{ user.rango }}</span></td>
+                        <td><span class="badge">{{ user.idiomas }}</span></td>
+                        <td>{{ user.descripcion }}</td>
+                        <td>{{ user.contacto }}</td>
+                        <td><button class="delete" (click)="deleteSubscription(user.usuario_videojuego.user_id, 1)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table" *ngIf="visualizingValorant">
+                <table class="users-table">
+                    <tr class="table-headers">
+                        <th>Username</th>
+                        <th>Rango</th>
+                        <th>Idiomas</th>
+                        <th>Descripción</th>
+                        <th>Contacto</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let user of filteredValorantUsers ; let i = index" class="table-tracks">
+                        <td>{{ user.username }}</td>
+                        <td><span class="badge">{{ user.rango }}</span></td>
+                        <td><span class="badge">{{user.idiomas }}</span></td>
+                        <td>{{ user.descripcion }}</td>
+                        <td>{{ user.contacto }}</td>
+                        <td><button class="delete" (click)="deleteSubscription(user.usuario_videojuego.user_id, 2)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table" *ngIf="visualizingFortnite">
+                <table class="users-table">
+                    <tr class="table-headers">
+                        <th>Username</th>
+                        <th>Rango</th>
+                        <th>Idiomas</th>
+                        <th>Descripción</th>
+                        <th>Contacto</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let user of filteredFortniteUsers ; let i = index" class="table-tracks">
+                        <td>{{ user.username }}</td>
+                        <td><span class="badge">{{user.rango}}</span></td>
+                        <td><span class="badge">{{user.idiomas}}</span></td>
+                        <td>{{ user.descripcion }}</td>
+                        <td>{{ user.contacto }}</td>
+                        <td><button class="delete" (click)="deleteSubscription(user.usuario_videojuego.user_id, 3)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table" *ngIf="visualizingUser">
+                <table class="users-table">
+                    <tr class="table-headers">
+                        <th>Nombre de usuario</th>
+                        <th>Email</th>
+                        <th>Created at</th>
+                        <th>Updated at</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let user of filteredUsers ; let i = index" class="table-tracks">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.created_at }}</td>
+                        <td>{{ user.updated_at }}</td>
+                        <td><button class="delete" (click)="deleteUsers(user.id)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

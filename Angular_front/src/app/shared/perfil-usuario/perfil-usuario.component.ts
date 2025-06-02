@@ -112,7 +112,7 @@ export class PerfilUsuarioComponent {
   }
 
   revokeUser() {
-    this.userService.destroyUser(this.userId).subscribe({
+    this.userService.destroyUser(this.userId, false).subscribe({
       next: response => {
         window.location.href = '/'
         this.handleResponse(response);

@@ -55,10 +55,14 @@ export class UserService {
     return this.http.post(`${this.API_URL}/fortnite_user/update/${$id_usuario_videojuego}`, $data);
   }
 
-  destroyUser($user_id: number) {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('user');
-    return this.http.delete(`${this.API_URL}/user/${$user_id}`);
+  destroyUser($user_id: number, admin: boolean) {
+    if (admin) {
+      return this.http.delete(`${this.API_URL}/user/${$user_id}`);
+    } else {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user');
+      return this.http.delete(`${this.API_URL}/user/${$user_id}`);
+    }
   }
 
   updateUser($data: any, $user_id: number) {
