@@ -36,7 +36,7 @@ export class FortniteformComponent {
       descripcion: [''],
       contacto: [''],
       user: [userId],
-      game: [2]
+      game: [3]
     });
 
     this.userService.userSubscription(userId, 'fortnite').subscribe((response: any) => {
