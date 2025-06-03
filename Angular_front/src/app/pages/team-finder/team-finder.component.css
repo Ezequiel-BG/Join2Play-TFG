@@ -100,14 +100,22 @@
     padding: 10px;
 }
 
-.table-tracks td {
+.table-tracks {
     color: rgba(239, 239, 239, 1);
     font-family: 'Roboto', sans-serif;
     background-color: #1e1e1e;
-    padding: 20px;
     text-align: center;
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
+    transition: 0.3s;
+}
+
+.table-tracks td {
+    padding: 20px;
+}
+
+table tr.table-tracks:hover {
+    background-color: #242424;
 }
 
 .badge {
