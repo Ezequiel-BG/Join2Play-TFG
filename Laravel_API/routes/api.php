@@ -1,8 +1,8 @@
 <?php
 
-use app\Http\Controllers\Api\AuthController;
-use app\Http\Controllers\Api\UsersController;
-use app\Http\Controllers\Api\VideogameController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\VideogameController;
 use Illuminate\Support\Facades\Route;
 
 //Rutas para el auth
