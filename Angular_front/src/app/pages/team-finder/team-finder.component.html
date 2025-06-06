@@ -126,13 +126,13 @@
                 <app-contact-info *ngIf="selectedUser" [discordUsername]="selectedUser.contacto"
                     (closeModal)="closeModal()"></app-contact-info>
             </table>
-            <div class="pagination-controls">
-                <button (click)="prevLolPage()" [disabled]="lolPage <= 1" class="pagination-control">Página
-                    anterior</button>
-                <p>Página {{ lolPage }} de {{ totalLolPages }}</p>
-                <button (click)="nextLolPage()" [disabled]="lolPage >= totalLolPages" class="pagination-control">Página
-                    siguiente</button>
-            </div>
+        </div>
+        <div class="pagination-controls">
+            <button (click)="prevLolPage()" [disabled]="lolPage <= 1" class="pagination-control">Página
+                anterior</button>
+            <p>Página {{ lolPage }} de {{ totalLolPages }}</p>
+            <button (click)="nextLolPage()" [disabled]="lolPage >= totalLolPages" class="pagination-control">Página
+                siguiente</button>
         </div>
     </div>
     <div class="users" *ngIf="is_valorant_user && show_valorant_table">
@@ -157,13 +157,13 @@
                 <app-contact-info *ngIf="selectedUser" [discordUsername]="selectedUser.contacto"
                     (closeModal)="closeModal()"></app-contact-info>
             </table>
-            <div class="pagination-controls">
-                <button (click)="prevValorantPage()" [disabled]="valorantPage <= 1" class="pagination-control">Página
-                    anterior</button>
-                <p>Página {{ valorantPage }} de {{totalValorantPages}}</p>
-                <button (click)="nextValorantPage()" [disabled]="valorantPage >= totalValorantPages"
-                    class="pagination-control">Página siguiente</button>
-            </div>
+        </div>
+        <div class="pagination-controls">
+            <button (click)="prevValorantPage()" [disabled]="valorantPage <= 1" class="pagination-control">Página
+                anterior</button>
+            <p>Página {{ valorantPage }} de {{totalValorantPages}}</p>
+            <button (click)="nextValorantPage()" [disabled]="valorantPage >= totalValorantPages"
+                class="pagination-control">Página siguiente</button>
         </div>
     </div>
     <div class="users" *ngIf="is_fortnite_user && show_fortnite_table">
@@ -188,13 +188,13 @@
                 <app-contact-info *ngIf="selectedUser" [discordUsername]="selectedUser.contacto"
                     (closeModal)="closeModal()"></app-contact-info>
             </table>
-            <div class="pagination-controls">
-                <button (click)="prevFortnitePage()" [disabled]="fortnitePage <= 1" class="pagination-control">Página
-                    anterior</button>
-                <p>Página {{ fortnitePage }} de {{totalFortnitePages}}</p>
-                <button (click)="nextFortnitePage()" [disabled]="fortnitePage >= totalFortnitePages"
-                    class="pagination-control">Página siguiente</button>
-            </div>
+        </div>
+        <div class="pagination-controls">
+            <button (click)="prevFortnitePage()" [disabled]="fortnitePage <= 1" class="pagination-control">Página
+                anterior</button>
+            <p>Página {{ fortnitePage }} de {{totalFortnitePages}}</p>
+            <button (click)="nextFortnitePage()" [disabled]="fortnitePage >= totalFortnitePages"
+                class="pagination-control">Página siguiente</button>
         </div>
     </div>
 </div>

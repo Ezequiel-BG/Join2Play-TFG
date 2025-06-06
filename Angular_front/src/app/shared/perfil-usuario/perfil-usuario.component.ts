@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../services/token.service';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-perfil-usuario',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, ConfirmationModalComponent],
   templateUrl: './perfil-usuario.component.html',
   styleUrl: './perfil-usuario.component.css'
 })
@@ -25,6 +26,7 @@ export class PerfilUsuarioComponent {
   isValorantUser: boolean = false;
   isFortniteUser: boolean = false;
   userId: number;
+  showConfirmationModal = false;
 
   constructor(
     private fb: FormBuilder,
@@ -132,5 +134,9 @@ export class PerfilUsuarioComponent {
 
   ngOnDestroy() {
     document.body.style.overflow = '';
+  }
+
+  openConfirmationModal(userId: number) {
+    this.showConfirmationModal = true;
   }
 }

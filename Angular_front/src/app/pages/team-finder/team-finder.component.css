@@ -82,15 +82,15 @@
     font-family: 'Audiowide';
 }
 
+.table-container {
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+    overflow: visible;
+}
+
 .users-table {
     width: 100%;
     border-collapse: collapse;
-}
-
-.table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 1rem;
 }
 
 .table-headers th {
@@ -115,7 +115,8 @@
 }
 
 table tr.table-tracks:hover {
-    background-color: #242424;
+    background-color: #3d3d3d;;
+    transform: scale(1.04);
 }
 
 .badge {
@@ -185,11 +186,23 @@ table tr.table-tracks:hover {
     }
 }
 
+@media (max-width: 1340px) {
+    .table-container {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    table tr.table-tracks:hover {
+        transform: none;
+    }
+}
+
 @media (max-width: 1024px) {
     .users-container {
         width: 95%;
     }
 }
+
 
 @media (max-width: 767px) {
     .users-container {

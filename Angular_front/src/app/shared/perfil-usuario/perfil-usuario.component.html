@@ -38,7 +38,12 @@
         <button type="submit" [disabled]="form.invalid" class="btn">Guardar</button>
         <button type="button" (click)="cerrar()" class="btn">Cancelar</button>
       </div>
-      <span class="accountDelete" (click)="revokeUser()">Eliminar mi cuenta permanentemente</span>
+      <span class="accountDelete" (click)="openConfirmationModal(userId)">Eliminar mi cuenta permanentemente</span>
     </form>
   </div>
+  <app-confirmation-modal
+    [visible]="showConfirmationModal"
+    (confirm)="revokeUser()"
+    (cancel)="showConfirmationModal = false"
+  />
 </div>

@@ -3,14 +3,17 @@ import { UserService } from '../../services/user.service';
 import { GameUser } from '../../models/game-user.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-panel-admin',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ConfirmationModalComponent],
   templateUrl: './panel-admin.component.html',
   styleUrl: './panel-admin.component.css'
 })
 export class PanelAdminComponent {
+  showConfirmationModal: boolean = false
+  showConfirmationModalSubscription: boolean = false
   visualizingLol: boolean = false;
   visualizingValorant: boolean = false;
   visualizingFortnite: boolean = false;
@@ -28,6 +31,10 @@ export class PanelAdminComponent {
   filteredValorantUsers: any[] = [];
   filteredFortniteUsers: any[] = [];
   filteredUsers: any[] = [];
+
+  userIdToDelete: any = null;
+  userIdToRevokeSubscription: any = null;
+  gameIdToRevokeSubscription: any = null;
 
   search:string = '';
 
@@ -177,12 +184,14 @@ export class PanelAdminComponent {
     }
   }
 
-  deleteSubscription(userId: number, gameId: number) {
-    this.userService.revokeSuscription(userId, gameId).subscribe({
-      next: data => window.location.href = '/panel-admin',
-      error: error => this.handleRevokedErrors(error),
-      complete: () => console.log('subscripción del usuario cancelada con éxito')
-    });
+  deleteSubscription() {
+    if ((this.userIdToRevokeSubscription && this.gameIdToRevokeSubscription) != null) {
+      this.userService.revokeSuscription(this.userIdToRevokeSubscription, this.gameIdToRevokeSubscription).subscribe({
+        next: data => window.location.href = '/panel-admin',
+        error: error => this.handleRevokedErrors(error),
+        complete: () => console.log('subscripción del usuario cancelada con éxito')
+      });
+    }
   }
 
   handleRevokedErrors(error: any) {
@@ -191,17 +200,30 @@ export class PanelAdminComponent {
     this.loading = false
   }
 
-  deleteUsers(userId: number) {
-    this.userService.destroyUser(userId, true).subscribe({
-      next: data => window.location.href = '/panel-admin',
-      error: error => this.handleRevokedErrors(error),
-      complete: () => console.log('usuario eliminado con éxito')
-    });
+  deleteUsers() {
+    if (this.userIdToDelete != null) {
+      this.userService.destroyUser(this.userIdToDelete, true).subscribe({
+        next: data => window.location.href = '/panel-admin',
+        error: error => this.handleRevokedErrors(error),
+        complete: () => console.log('usuario eliminado con éxito')
+      });
+    }
   }
 
   handleDeleteErrors(error: any) {
     this.errors = 'Error al eliminar el usuario'
     console.log(this.errors)
     this.loading = false
+  }
+
+  openConfirmationModal(userId: number) {
+    this.showConfirmationModal = true;
+    this.userIdToDelete = userId
+  }
+
+  openSubscriptionConfirmationModal(userId: number, game_id: number) {
+    this.showConfirmationModalSubscription = true;
+    this.userIdToRevokeSubscription = userId;
+    this.gameIdToRevokeSubscription = game_id;
   }
 }

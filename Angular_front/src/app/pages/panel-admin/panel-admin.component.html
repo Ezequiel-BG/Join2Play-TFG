@@ -2,6 +2,7 @@
     <aside class="sidebar">
         <nav>
             <a class="link" (click)="setVisualizer('users')" [class.active] = "visualizingUser">Usuarios</a>
+            <hr>
             <a class="link" (click)="setVisualizer('lol')" [class.active] = "visualizingLol">League of Legends</a>
             <a class="link" (click)="setVisualizer('valorant')" [class.active] = "visualizingValorant">Valorant</a>
             <a class="link" (click)="setVisualizer('fortnite')" [class.active] = "visualizingFortnite">Fortnite</a>
@@ -37,9 +38,14 @@
                         <td><span class="badge">{{ user.idiomas }}</span></td>
                         <td>{{ user.descripcion }}</td>
                         <td>{{ user.contacto }}</td>
-                        <td><button class="delete" (click)="deleteSubscription(user.usuario_videojuego.user_id, 1)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                        <td><button class="delete" (click)="openSubscriptionConfirmationModal(user.usuario_videojuego.user_id, 1)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
                     </tr>
                 </table>
+                <app-confirmation-modal
+                    [visible]="showConfirmationModalSubscription"
+                    (confirm)="deleteSubscription()"
+                    (cancel)="showConfirmationModalSubscription = false"
+                />
             </div>
             <div class="table" *ngIf="visualizingValorant">
                 <table class="users-table">
@@ -57,9 +63,14 @@
                         <td><span class="badge">{{user.idiomas }}</span></td>
                         <td>{{ user.descripcion }}</td>
                         <td>{{ user.contacto }}</td>
-                        <td><button class="delete" (click)="deleteSubscription(user.usuario_videojuego.user_id, 2)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                        <td><button class="delete" (click)="openSubscriptionConfirmationModal(user.usuario_videojuego.user_id, 2)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
                     </tr>
                 </table>
+                <app-confirmation-modal
+                    [visible]="showConfirmationModalSubscription"
+                    (confirm)="deleteSubscription()"
+                    (cancel)="showConfirmationModalSubscription = false"
+                />
             </div>
             <div class="table" *ngIf="visualizingFortnite">
                 <table class="users-table">
@@ -77,9 +88,14 @@
                         <td><span class="badge">{{user.idiomas}}</span></td>
                         <td>{{ user.descripcion }}</td>
                         <td>{{ user.contacto }}</td>
-                        <td><button class="delete" (click)="deleteSubscription(user.usuario_videojuego.user_id, 3)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                        <td><button class="delete" (click)="openSubscriptionConfirmationModal(user.usuario_videojuego.user_id, 3)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
                     </tr>
                 </table>
+                <app-confirmation-modal
+                    [visible]="showConfirmationModalSubscription"
+                    (confirm)="deleteSubscription()"
+                    (cancel)="showConfirmationModalSubscription = false"
+                />
             </div>
             <div class="table" *ngIf="visualizingUser">
                 <table class="users-table">
@@ -95,9 +111,14 @@
                         <td>{{ user.email }}</td>
                         <td>{{ user.created_at }}</td>
                         <td>{{ user.updated_at }}</td>
-                        <td><button class="delete" (click)="deleteUsers(user.id)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
+                        <td><button class="delete" (click)="openConfirmationModal(user.id)"><img src="./assets/trashcan-icon.png" alt="trashcan"></button></td>
                     </tr>
                 </table>
+                <app-confirmation-modal
+                    [visible]="showConfirmationModal"
+                    (confirm)="deleteUsers()"
+                    (cancel)="showConfirmationModal = false"
+                />
             </div>
         </div>
     </div>

@@ -1,11 +1,12 @@
 <div class="overlay">
+  <div class="background">
     <div class="modal">
       <button class="close-button" (click)="close()">✖</button>
       <h2>Valorant</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <input type="text" placeholder="Nombre de usuario" name="username" required class="input" formControlName="username"/>
         <select name="rango" id="rango" required class="input" formControlName="rango">
-            <option value="Rango" disabled selected hidden class="placeholder-option">Rango</option>
+            <option value="" disabled selected hidden class="placeholder-option">Rango</option>
             <option value="Hierro">Hierro</option>
             <option value="Bronce">Bronce</option>
             <option value="Plata">Plata</option>
@@ -17,7 +18,7 @@
             <option value="Radiante">Radiante</option>
         </select>
         <select name="idiomas" id="idiomas" required class="input" formControlName="idiomas">
-            <option value="idioma" disabled selected hidden class="placeholder-option">Idioma</option>
+            <option value="" disabled selected hidden class="placeholder-option">Idioma</option>
             <option value="Español">Español</option>
             <option value="Inglés">Inglés</option>
             <option value="Alemán">Alemán</option>
@@ -29,4 +30,5 @@
         <button type="submit" class="btn">Enviar</button>
       </form>
     </div>
+  </div>
   </div>

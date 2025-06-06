@@ -12,6 +12,16 @@
     z-index: 1;
 }
 
+.background {
+    background-image: url(../../../../public/assets/valorant-form-background.jpg);
+    background-size: contain;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    margin-top: 80px;
+    border-radius: 10px;
+    width: 150vh;
+    max-height: 680px;
+}
+
 .modal {
     background: rgb(51, 51, 51);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
@@ -19,10 +29,10 @@
     border-radius: 10px;
     width: 90%;
     height: auto;
-    margin-top: 80px;
     max-width: 600px;
     max-height: 600px;
     position: relative;
+    float: right;
     color: rgba(239, 239, 239, 1);
 }
 
@@ -74,9 +84,25 @@ form {
     outline: none;
 }
 
+select:invalid {
+    color: rgb(116, 116, 116);
+}
+
+@media (max-width: 1024px) {
+    .background {
+        background: transparent;    
+    }
+
+    .modal {
+        float: none;
+        margin: auto;
+    }
+}
+
 @media (max-width: 767px) {
     .modal {
         padding: 40px;
+        width: 85%;
     }
 
     .input {

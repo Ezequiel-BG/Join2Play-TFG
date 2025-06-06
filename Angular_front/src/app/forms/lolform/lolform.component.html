@@ -1,41 +1,45 @@
 <div class="overlay">
-  <div class="modal">
-    <button class="close-button" (click)="close()">✖</button>
-    <h2>League of Legends</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <input type="text" placeholder="Nombre de usuario" name="username" required class="input" formControlName="username"/>
-      <select name="rango" id="rango" required class="input" formControlName="rango">
-        <option value="Rango" disabled selected hidden class="placeholder-option">Rango</option>
-        <option value="Hierro">Hierro</option>
-        <option value="Bronce">Bronce</option>
-        <option value="Plata">Plata</option>
-        <option value="Oro">Oro</option>
-        <option value="Platino">Platino</option>
-        <option value="Esmeralda">Esmeralda</option>
-        <option value="Diamante">Diamante</option>
-        <option value="Master">Master</option>
-        <option value="Grandmaster">Grandmaster</option>
-        <option value="Challenger">Challenger</option>
-      </select>
-      <select name="posicion" id="posicion" required class="input" formControlName="posicion">
-        <option value="posicion" disabled selected hidden class="placeholder-option">Posición</option>
-        <option value="Top">Top</option>
-        <option value="Jungla">Jungla</option>
-        <option value="Mid">Mid</option>
-        <option value="ADC">ADC</option>
-        <option value="Support">Support</option>
-      </select>
-      <select name="idiomas" id="idiomas" required class="input" formControlName="idiomas">
-        <option value="idioma" disabled selected hidden class="placeholder-option">Idioma</option>
-        <option value="Español">Español</option>
-        <option value="Inglés">Inglés</option>
-        <option value="Alemán">Alemán</option>
-        <option value="Chino">Chino</option>
-        <option value="Japonés">Japones</option>
-      </select>
-      <input type="textarea" placeholder="Descripción" name="descripcion" class="input" formControlName="descripcion" required/>
-      <input type="text" placeholder="Contacto" name="contacto" class="input" formControlName="contacto" required/>
-      <button type="submit" class="btn">Enviar</button>
-    </form>
+  <div class="background">
+    <div class="modal">
+      <button class="close-button" (click)="close()">✖</button>
+      <h2>League of Legends</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Nombre de usuario" name="username" required class="input"
+          formControlName="username" />
+        <select name="rango" id="rango" required class="input" formControlName="rango">
+          <option value="" disabled selected hidden class="placeholder-option">Rango</option>
+          <option value="Hierro">Hierro</option>
+          <option value="Bronce">Bronce</option>
+          <option value="Plata">Plata</option>
+          <option value="Oro">Oro</option>
+          <option value="Platino">Platino</option>
+          <option value="Esmeralda">Esmeralda</option>
+          <option value="Diamante">Diamante</option>
+          <option value="Master">Master</option>
+          <option value="Grandmaster">Grandmaster</option>
+          <option value="Challenger">Challenger</option>
+        </select>
+        <select name="posicion" id="posicion" required class="input" formControlName="posicion">
+          <option value="" disabled selected hidden class="placeholder-option">Posición</option>
+          <option value="Top">Top</option>
+          <option value="Jungla">Jungla</option>
+          <option value="Mid">Mid</option>
+          <option value="ADC">ADC</option>
+          <option value="Support">Support</option>
+        </select>
+        <select name="idiomas" id="idiomas" required class="input" formControlName="idiomas">
+          <option value="" disabled selected hidden class="placeholder-option">Idioma</option>
+          <option value="Español">Español</option>
+          <option value="Inglés">Inglés</option>
+          <option value="Alemán">Alemán</option>
+          <option value="Chino">Chino</option>
+          <option value="Japonés">Japones</option>
+        </select>
+        <input type="textarea" placeholder="Descripción" name="descripcion" class="input" formControlName="descripcion"
+          required />
+        <input type="text" placeholder="Contacto" name="contacto" class="input" formControlName="contacto" required />
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+    </div>
   </div>
 </div>
