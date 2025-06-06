@@ -13,7 +13,7 @@
 }
 
 .background {
-    background-image: url(../../../../public/assets/valorant-form-background.jpg);
+    background-image: url(/assets/valorant-form-background.jpg);
     background-size: contain;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     margin-top: 80px;

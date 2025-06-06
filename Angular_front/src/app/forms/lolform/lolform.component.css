@@ -13,7 +13,7 @@
 }
 
 .background {
-    background-image: url(../../../../public/assets/form-background.jpg);
+    background-image: url(/assets/form-background.jpg);
     background-size: cover;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     margin-top: 80px;
