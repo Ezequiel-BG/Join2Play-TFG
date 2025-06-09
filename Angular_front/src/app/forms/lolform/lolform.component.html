@@ -4,8 +4,7 @@
       <button class="close-button" (click)="close()">✖</button>
       <h2>League of Legends</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <input type="text" placeholder="Nombre de usuario" name="username" required class="input"
-          formControlName="username" />
+        <input type="text" placeholder="Nombre de usuario" name="username" required class="input" formControlName="username" />
         <select name="rango" id="rango" required class="input" formControlName="rango">
           <option value="" disabled selected hidden class="placeholder-option">Rango</option>
           <option value="Hierro">Hierro</option>
@@ -35,8 +34,7 @@
           <option value="Chino">Chino</option>
           <option value="Japonés">Japones</option>
         </select>
-        <input type="textarea" placeholder="Descripción" name="descripcion" class="input" formControlName="descripcion"
-          required />
+        <input type="textarea" placeholder="Descripción" name="descripcion" class="input" formControlName="descripcion" required />
         <input type="text" placeholder="Contacto" name="contacto" class="input" formControlName="contacto" required />
         <button type="submit" class="btn">Enviar</button>
       </form>

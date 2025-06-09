@@ -49,7 +49,22 @@ export class RegisterComponent {
 
   private handleErrors(errors: any): void {
     this.errors = errors.error.errors;
-    console.log(this.errors);
+    if (this.errors.email) {
+      if (this.errors.email == 'The email field is required.') {
+        this.alertService.showError('El campo email es obligatorio')
+      } else if (this.errors.email == 'The email field must be a valid email address.') {
+        this.alertService.showError('Escribe un email válido, por favor')
+      } else {
+        this.alertService.showError('El email ya está en uso')
+      }
+    }
+    if (this.errors.email && this.errors.password && this.errors.name) {
+      this.alertService.showError('Por favor rellene los campos')
+    }
+    if (this.errors.password && !this.errors.email && !this.errors.name) {
+      this.alertService.showError('El campo contraseña y confirmar contraseña no han sido rellenados o no concuerdan')
+    }
+    console.log(this.errors)
   }
 
   private cleanErrors(): void {

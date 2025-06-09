@@ -1,14 +1,6 @@
 <div class="login">
     <div class="login-overlay">
         <div class="form-container">
-            <div *ngIf="showErrorBox && hasErrors()" class="error-toast">
-                <button class="close-btn" (click)="closeErrorBox()">✕</button>
-                <ul>
-                  <li *ngIf="errors?.email">{{ errors.email }}</li>
-                  <li *ngIf="errors?.password">{{ errors.password }}</li>
-                  <li *ngIf="errors && !errors.email && !errors.password">{{ errors }}</li>
-                </ul>
-            </div>
             <h2>¡Bienvenido de vuelta!</h2>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <input type="email" name="email" id="email" placeholder="Email" class="input" [ngClass]="{'input-error': errors?.email}" formControlName="email" required>

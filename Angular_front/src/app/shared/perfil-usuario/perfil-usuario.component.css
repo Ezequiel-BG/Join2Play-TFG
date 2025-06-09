@@ -158,6 +158,11 @@ button[type="button"]:hover {
     font-size: 1.5rem;
     cursor: pointer;
     color: rgba(239, 239, 239, 1);
+    transition: 0.3s;
+}
+
+.suscripciones .eliminate:hover {
+    color: #ffa9a9;
 }
 
 .loading-container {
@@ -173,7 +178,8 @@ button[type="button"]:hover {
 }
 
 .accountDelete {
-    color: #ff6b6b;
+    margin-top: 50px;
+    color: rgba(239, 239, 239, 1);
     font-family: 'Exo 2';
     font-weight: 100;
     text-decoration: none;
@@ -184,7 +190,7 @@ button[type="button"]:hover {
 }
 
 .accountDelete:hover {
-    color: #ff2e2e;
+    color: #ffa9a9;
     border-bottom: none;
 }
 

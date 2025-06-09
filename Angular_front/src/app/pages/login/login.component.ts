@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../services/token.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {
     window.scrollTo(0,0)
     this.loginForm = this.fb.group({
@@ -54,7 +56,18 @@ export class LoginComponent {
 
   private handleErrors(errors: any): void {
     this.errors = errors.error.errors;
-    console.log(this.errors);
+    if (this.errors.email && !this.errors.password) {
+      this.alertService.showError('El campo email es obligatorio')
+    }
+    if (this.errors.password && !this.errors.email) {
+      this.alertService.showError('El campo contraseña es obligatorio')
+    }
+    if (this.errors.email && this.errors.password) {
+      this.alertService.showError('Los campos email y contraseña son obligatorios')
+    }
+    if (!this.errors.email && !this.errors.password) {
+      this.alertService.showError(this.errors)
+    }
   }
 
   private cleanErrors(): void {

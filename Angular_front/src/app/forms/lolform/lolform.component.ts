@@ -80,7 +80,24 @@ export class LolformComponent {
 
   private handleErrors(errors: any): void {
     this.errors = errors.error?.errors || { general: 'Error al enviar el formulario.' };
-    console.log(this.errors);
+    if (this.errors.contacto) {
+      this.alertService.showError('Por favor agrege su contacto de Discord')
+    }
+    if (this.errors.descripcion) {
+      this.alertService.showError('Por favor agrege una descripción')
+    }
+    if (this.errors.idioma) {
+      this.alertService.showError('Por favor seleccione el idioma en el que usted desee comunicarse')
+    }
+    if (this.errors.posicion) {
+      this.alertService.showError('Por favor seleccione una posición válida')
+    }
+    if (this.errors.rango) {
+      this.alertService.showError('Por favor seleccione un rango')
+    }
+    if (this.errors.username) {
+      this.alertService.showError('Por favor rellene el campo de nombre de usuario')
+    }
   }
 
   ngOnInit() {

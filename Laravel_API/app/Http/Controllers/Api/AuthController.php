@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         if (! Auth::attempt($request->validated())) {
             return response()->json([
-                'errors' => 'Credenciales incorrectas.'
+                'errors' => 'Usuario inexistente'
             ], Response::HTTP_UNAUTHORIZED);
         }
 

@@ -13,7 +13,11 @@
           <img src="assets/edit-icon.png" alt="edit-icon" class="edit-icon">
         </div>
       </div>
-      <h3>Suscrito a:</h3>
+      <div class="acciones">
+        <button type="submit" [disabled]="form.invalid" class="btn">Guardar</button>
+        <button type="button" (click)="cerrar()" class="btn">Cancelar</button>
+      </div>
+      <h3>Manejar mis suscripciones:</h3>
       <div class="suscripciones">
         <div class="suscripcion" *ngIf="isLolUser && !loading">
           <p>League of Legends</p>
@@ -33,10 +37,6 @@
         <div class="loading-container" *ngIf="loading">
           <p>Cargando...</p>
         </div>
-      </div>
-      <div class="acciones">
-        <button type="submit" [disabled]="form.invalid" class="btn">Guardar</button>
-        <button type="button" (click)="cerrar()" class="btn">Cancelar</button>
       </div>
       <span class="accountDelete" (click)="openConfirmationModal(userId)">Eliminar mi cuenta permanentemente</span>
     </form>
